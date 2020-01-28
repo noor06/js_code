@@ -1,0 +1,58 @@
+<div class="clinic_doctors_table_div" *ngIf="!loading">
+  <table id="clinic_doctors_table" class="table table-hover">
+    <thead>
+      <tr>
+        <th class="no-sort">Picture</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Phone</th>
+        <th>Speciality</th>
+        <th>Working days</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of doctors; let i = index">
+        <td>
+          <img
+            (click)="open(i)"
+            class="profile_pic"
+            [src]="item.profile_pic || 'assets/images/doctor_placeholder.jpeg'"
+            [alt]="item.name"
+          />
+        </td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.designation }}</td>
+        <td>{{ item.department }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.specialities }}</td>
+        <td>
+          <div class="row badge_week">
+            <span
+              *ngFor="let item of item.working_days"
+              class="badge badge-success col-md-3"
+            >
+              {{ item }}
+            </span>
+          </div>
+        </td>
+        <td>
+          <ng-container *ngIf="item.isActive">Active</ng-container>
+          <ng-container *ngIf="!item.isActive">Inactive</ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="add_doctor_div">
+  <a
+    href="javascript:void(0)"
+    [routerLink]="['/clinic/doctor', logged_hospital, 'add']"
+    class="btn add_doctor_clinic add_btn"
+  >
+    Add Doctor
+  </a>
+</div>

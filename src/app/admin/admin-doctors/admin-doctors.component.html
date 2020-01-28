@@ -1,0 +1,176 @@
+<div>
+  <div class="search_box row">
+    <form (submit)="search_doctor(search_text)" class="col-md-9 pl-md-0">
+      <div class="input_search p-0">
+        <i class="fas fa-search"></i>
+        <input
+          placeholder="Search doctor"
+          [(ngModel)]="search_text"
+          id="search_input"
+          name="search_box"
+          (keyup)="clear_all($event)"
+        />
+        <div class="search-bar">
+          <button type="submit" class="btn btn-search">
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="filter_box col-md-2 text-right pr-md-0">
+      <div class="btn-group">
+        <span *ngIf="filter_on"></span>
+        <button
+          id="button-animated"
+          type="button"
+          class="btn btn-primary dropdown-toggle"
+        >
+          <i class="fas fa-filter"></i> Filter by hospital
+        </button>
+        <ul id="dropdown-animated" class="dropdown-menu dropdown-menu-left">
+          <div class="filter_form">
+            <div class="form-group">
+              <label>
+                Select hospital:
+              </label>
+
+              <select class="form-control" [(ngModel)]="filter_hospital">
+                <option value="" disabled selected>Select hospital...</option>
+                <ng-container *ngIf="hospitals && hospitals.length > 0">
+                  <option *ngFor="let item of hospitals" [value]="item.id">
+                    {{ item.name }}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+
+            <div class="btn-grp-filter">
+              <button
+                class="btn btn-sm clear_btn"
+                (click)="cancel_filter()"
+                type="button"
+                [disabled]="filter_hospital === ''"
+              >
+                Clear
+              </button>
+              <button
+                (click)="filter_apply()"
+                class="btn btn-sm"
+                [disabled]="filter_hospital === ''"
+                type="button"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="doctors_table_flag">
+    <table id="doctor_datatable" class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="no-sort">Picture</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Designation</th>
+          <th>Department</th>
+          <th>Phone</th>
+          <th>Speciality</th>
+          <th>Working days</th>
+          <th>Timings</th>
+          <th>Status</th>
+          <th class="no-sort">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of doctors; let i = index">
+          <td>
+            <img
+              (click)="open(i)"
+              class="profile_pic"
+              [src]="
+                item.profile_pic || 'assets/images/doctor_placeholder.jpeg'
+              "
+              [alt]="item.name"
+            />
+          </td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.designation }}</td>
+          <td>{{ item.department }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.specialities }}</td>
+          <td>
+            <div class="row badge_week">
+              <span
+                *ngFor="let item of item.working_days"
+                class="badge badge-success col-md-3"
+              >
+                {{ item }}
+              </span>
+            </div>
+          </td>
+          <td>{{ getTime(item.start_time) }} - {{ getTime(item.end_time) }}</td>
+          <td>
+            <ng-container *ngIf="item.isActive">Active</ng-container>
+            <ng-container *ngIf="!item.isActive">Inactive</ng-container>
+          </td>
+          <td>
+            <button
+              class="btn btn-sm"
+              (click)="delete_doctor(item.id, item.hospitalId)"
+              type="button"
+            >
+              <i class="fas fa-trash"></i>
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="add_hospital_button_div">
+      <button
+        type="button"
+        class="btn add_btn"
+        (click)="add_doctor_navigation(modal_wizard)"
+      >
+        Add doctor
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #modal_wizard>
+  <div class="wizard_modal">
+    <small class="small_wizard">
+      Please select hospital where doctor to be added
+    </small>
+
+    <div class="form-group">
+      <label>Choose Hospital:</label>
+      <select class="form-control" (change)="choose_hospital($event)">
+        <option value="" disabled selected>Choose hospital...</option>
+        <ng-container *ngIf="hospitals && hospitals.length > 0">
+          <option *ngFor="let item of hospitals" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+
+    <div class="wizard-btn-grp">
+      <button
+        class="form-control"
+        class="btn"
+        type="button"
+        (click)="modalRef.hide()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</ng-template>

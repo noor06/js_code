@@ -1,0 +1,146 @@
+.register_page {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+  background-image: url(src/assets/images/login_bg.jpg);
+}
+.patient_register_form {
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f6f4f4;
+  background-image: url(src/assets/images/register_bottom.png);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-image: auto auto;
+  display: flex;
+  align-items: center;
+  padding: 85px 15px;
+}
+i.fas.fa-calendar-alt {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.p_r_f_inner {
+  max-width: 545px;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  padding: 0 15px;
+}
+.p_r_f_inner .form-control {
+  height: 46px;
+  background: #fff;
+}
+.register_left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #fff;
+}
+.p_r_f_inner h4 {
+  color: #2a2d36;
+  font-size: 16px;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+.register_left {
+  max-width: 430px;
+  padding: 40px 15px;
+  margin: 0 auto;
+  width: 100%;
+  line-height: 28px;
+}
+.register_left .register_logo {
+  margin: 0 0 30px;
+}
+.register_btn,
+.cancel_btn {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 40px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 13px;
+  background: #5e29ff;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(1%, #5e29ff),
+    to(#7651e6)
+  );
+  background: linear-gradient(to right, #5e29ff 1%, #7651e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e29ff', endColorstr='#7651e6',GradientType=1 );
+  color: #fff;
+  display: block;
+  min-width: 175px;
+  margin: 0 5px;
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
+}
+.cancel_btn {
+  background: #ddd;
+  color: #333 !important;
+}
+.register_btn_grp {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.dropdown_country {
+  left: 18% !important;
+  right: auto !important;
+  top: 45% !important;
+  transform: translateY(0px);
+}
+
+.form-group {
+  position: relative;
+}
+
+.r_password_block .form-group {
+  position: relative;
+}
+.r_password_block .form-group .fas,
+.r_password_block .form-group .fa {
+  position: absolute;
+  right: 15px;
+  top: 16px;
+  display: inline-block;
+}
+
+/*My responsive style
+=========================================================*/
+@media only screen and (max-width: 991px) {
+  .patient_register_form {
+    padding: 60px 15px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .register_page .col-md-7 {
+    padding-left: 0;
+  }
+  .register_left {
+    padding: 40px 0px;
+    min-height: inherit;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .register_btn_grp .btn {
+    min-width: 130px;
+    padding: 0 20px;
+  }
+  .p_r_f_inner {
+    padding: 0 0;
+  }
+  .patient_register_form {
+    padding: 40px 15px;
+  }
+}

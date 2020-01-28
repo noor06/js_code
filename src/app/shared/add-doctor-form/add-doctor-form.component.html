@@ -1,0 +1,519 @@
+<div class="bread_crumb">
+  <ol class="breadcrumb breadcrumb-arrow">
+    <li><a (click)="redirect()" [routerLink]="bread_route">Doctors</a></li>
+    <li>Add Doctor</li>
+  </ol>
+</div>
+
+<div class="add_doctor_form">
+  <!-- <h3 class="sec_title">Add <span class="c_purple">Doctor</span></h3> -->
+  <form [formGroup]="doctor_form" autocomplete="off" (submit)="addDoctor()">
+    <section class="section_sep">
+      <div class="general_info">
+        <h5>General information</h5>
+
+        <div class="col-md-12 mb-5">
+          <!-- <label>Profile picture:</label> -->
+          <label class="upload_img ml-md-auto mr-auto" for="upload_img">
+            <img
+              [src]="selected_image || 'assets/images/user-placeholder.png'"
+            />
+            <span *ngIf="selected_image" class="up_txt">Change Picture </span>
+            <span *ngIf="!selected_image" class="up_txt">Add Picture </span>
+            <input
+              type="file"
+              class="form-control"
+              id="upload_img"
+              (change)="upload($event)"
+              accept="image/*"
+            />
+          </label>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Full Name: <i style="text-transform: lowercase;">(Don't use any prefix like Dr. etc)</i></label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter full name"
+                formControlName="name"
+                minlength="3"
+                maxlength="50"
+              />
+              <div
+                *ngIf="
+                  doctor_form.controls['name'].hasError('required') &&
+                  doctor_form.controls['name'].touched
+                "
+                class="error_div text-danger"
+              >
+                Please enter the full name
+              </div>
+              <div
+                *ngIf="
+                  doctor_form.controls['name'].hasError('pattern') &&
+                  doctor_form.controls['name'].touched
+                "
+                class="error_div text-danger"
+              >
+                Doctor's name must not start with whitespace
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Highest qualification:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter highest qualification"
+                formControlName="qualification"
+              />
+              <div
+                *ngIf="
+                  doctor_form.controls['qualification'].hasError('required') &&
+                  doctor_form.controls['qualification'].touched
+                "
+                class="error_div text-danger"
+              >
+                Please enter qualification
+              </div>
+              <div
+                *ngIf="
+                  doctor_form.controls['qualification'].hasError('pattern') &&
+                  doctor_form.controls['qualification'].touched
+                "
+                class="error_div text-danger"
+              >
+                Qualification must not be whitespace
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label>Email:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter email"
+              formControlName="email"
+            />
+            <div
+              *ngIf="
+                doctor_form.controls['email'].hasError('required') &&
+                doctor_form.controls['email'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter email
+            </div>
+            <div
+              *ngIf="
+                doctor_form.controls['email'].hasError('pattern') &&
+                doctor_form.controls['email'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter valid email
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 form-group">
+            <label>Mobile:</label>
+            <intl-input-phone
+              [ConfigurationOption]="configOption"
+              [CountryList]="customCountryList"
+              (OnNumberChange)="onNumberChange($event)"
+            ></intl-input-phone>
+            <div
+              *ngIf="
+                doctor_form.controls['phone'].hasError('required') &&
+                doctor_form.controls['phone'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter mobile number
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            >Date of birth:
+            <i style="text-transform: lowercase"
+              >(should be atleast 18 years old)</i
+            ></label
+          >
+          <input
+            type="text"
+            style="cursor: pointer;"
+            [maxDate]="maxDate"
+            class="form-control"
+            #dp="bsDatepicker"
+            [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY' }"
+            bsDatepicker
+            readonly
+            placeholder="Date of birth..."
+            formControlName="dob"
+          />
+          <i class="fas fa-calendar-alt"></i>
+          <div
+            *ngIf="
+              doctor_form.controls['dob'].hasError('required') &&
+              doctor_form.controls['dob'].touched
+            "
+            class="text-danger"
+          >
+            Please choose date of birth
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group sex col-md-6">
+            <label>Gender:</label>
+            <select class="sex_select form-control" formControlName="gender">
+              <option value="" selected>
+                Select gender...
+              </option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="transgender">Transgender</option>
+            </select>
+            <div
+              *ngIf="
+                doctor_form.controls['gender'].hasError('required') &&
+                doctor_form.controls['gender'].touched
+              "
+              class="text-danger"
+            >
+              Please select gender
+            </div>
+          </div>
+          <div class="form-group blood-group col-md-6">
+            <label>Blood group:</label>
+            <select
+              formControlName="blood_group"
+              class="blood_group form-control"
+            >
+              <option value="" selected>
+                Select Bloodgroup...
+              </option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+            <div
+              *ngIf="
+                doctor_form.controls['blood_group'].hasError('required') &&
+                doctor_form.controls['blood_group'].touched
+              "
+              class="text-danger"
+            >
+              Please select blood group
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Address:</label>
+          <textarea
+            class="form-control"
+            placeholder="Enter address"
+            formControlName="address"
+          ></textarea>
+
+          <div
+            *ngIf="
+              doctor_form.controls['address'].hasError('required') &&
+              doctor_form.controls['address'].touched
+            "
+            class="error_div text-danger"
+          >
+            Please enter address
+          </div>
+          <div
+            *ngIf="
+              doctor_form.controls['address'].hasError('pattern') &&
+              doctor_form.controls['address'].touched
+            "
+            class="error_div text-danger"
+          >
+            Address must not start with whitespace
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="professional_info">
+        <h5>Professional information</h5>
+
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label>Department:</label>
+            <select class="form-control" formControlName="department">
+              <option value="" disabled selected>Select department...</option>
+              <ng-container *ngFor="let item of departments">
+                <option [value]="item.name">{{ item.name }}</option>
+              </ng-container>
+            </select>
+            <div
+              *ngIf="
+                doctor_form.controls['department'].hasError('required') &&
+                doctor_form.controls['department'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter department
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 form-group">
+            <label>Designation:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter designation"
+              formControlName="designation"
+            />
+            <div
+              *ngIf="
+                doctor_form.controls['designation'].hasError('required') &&
+                doctor_form.controls['designation'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter designation
+            </div>
+            <div
+              *ngIf="
+                doctor_form.controls['designation'].hasError('pattern') &&
+                doctor_form.controls['designation'].touched
+              "
+              class="error_div text-danger"
+            >
+              Designation must not start with whitespace
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label>Speciality:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter speciality"
+              formControlName="specialities"
+            />
+            <div
+              *ngIf="
+                doctor_form.controls['specialities'].hasError('required') &&
+                doctor_form.controls['specialities'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter speciality
+            </div>
+            <div
+              *ngIf="
+                doctor_form.controls['specialities'].hasError('pattern') &&
+                doctor_form.controls['specialities'].touched
+              "
+              class="error_div text-danger"
+            >
+              Speciality must not be whitespace
+            </div>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <label
+              >Experience
+              <i style="text-transform: lowercase;">(in years)</i> :</label
+            >
+            <input
+              maxlength="2"
+              type="text"
+              class="form-control"
+              placeholder="Enter experience"
+              formControlName="experience"
+            />
+            <div
+              *ngIf="
+                doctor_form.controls['experience'].hasError('required') &&
+                doctor_form.controls['experience'].touched
+              "
+              class="error_div text-danger"
+            >
+              Please enter experience
+            </div>
+            <div
+              *ngIf="
+                doctor_form.controls['experience'].hasError('pattern') &&
+                doctor_form.controls['experience'].touched
+              "
+              class="error_div text-danger"
+            >
+              Experience must be numeric
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Past position:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter past positions"
+            formControlName="past_positions"
+          />
+          <div
+            *ngIf="
+              doctor_form.controls['past_positions'].hasError('required') &&
+              doctor_form.controls['past_positions'].touched
+            "
+            class="error_div text-danger"
+          >
+            Please enter past positions
+          </div>
+          <div
+            *ngIf="
+              doctor_form.controls['past_positions'].hasError('pattern') &&
+              doctor_form.controls['past_positions'].touched
+            "
+            class="error_div text-danger"
+          >
+            Past position must not be whitespace
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="timing_div">
+        <h5>Timings</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group clock_input">
+              <label for="start_time">Start time:</label>
+              <input
+                id="start_time"
+                readonly
+                class="form-control"
+                atp-time-picker
+                type="time"
+                placeholder="from"
+                formControlName="start_time"
+                (click)="open()"
+              />
+              <i class="fa fa-clock"></i>
+              <div
+                *ngIf="
+                  doctor_form.controls['start_time'].hasError('required') &&
+                  doctor_form.controls['start_time'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter start timing
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group clock_input">
+              <label for="to_time">End time:</label>
+              <input
+                id="to_time"
+                class="form-control"
+                atp-time-picker
+                readonly
+                type="time"
+                placeholder="to"
+                formControlName="end_time"
+                (click)="open()"
+              />
+              <i class="fa fa-clock"></i>
+              <div
+                *ngIf="
+                  doctor_form.controls['end_time'].hasError('required') &&
+                  doctor_form.controls['end_time'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter end timing
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="select_days form-group">
+          <label>Select days:</label>
+          <ng-multiselect-dropdown
+            placeholder="Select working days"
+            [data]="dropdownList"
+            formControlName="days"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="onItemDeSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+          <div
+            *ngIf="
+              doctor_form.controls['days'].hasError('required') &&
+              doctor_form.controls['days'].touched
+            "
+            class="error_div text-danger"
+          >
+            Please select working days
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="additional_info">
+        <h5>Additional information</h5>
+
+        <div class="form-group">
+          <label
+            >Short description:
+            <i style="text-transform: lowercase"
+              >(max characters 1000)</i
+            ></label
+          >
+          <textarea
+            class="form-control"
+            placeholder="Enter description"
+            formControlName="description"
+            maxlength="1000"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class=" d-flex justify-content-end">
+        <button
+          *ngIf="!loading"
+          type="button"
+          (click)="back()"
+          class="cancel_btn btn"
+        >
+          Cancel
+        </button>
+        <button type="submit" class="submit_btn btn">
+          <span *ngIf="!loading">Submit</span>
+          <span *ngIf="loading">
+            Submitting...
+          </span>
+        </button>
+      </div>
+    </section>
+  </form>
+</div>

@@ -1,0 +1,69 @@
+<div class="update_password_form card">
+  <h5>Update Password</h5>
+
+  <form
+    [formGroup]="password_update_form"
+    autocomplete="off"
+    (submit)="updatePassword()"
+  >
+    <div class="form-group">
+      <label>New password: </label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="newPassword"
+        placeholder="Enter new password"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          password_update_form.controls['newPassword'].hasError('required') &&
+          password_update_form.controls['newPassword'].touched
+        "
+      >
+        Please enter new password
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          password_update_form.controls['newPassword'].hasError('pattern') &&
+          password_update_form.controls['newPassword'].touched
+        "
+      >
+        Please enter valid password
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Confirm password: </label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="confPassword"
+        placeholder="Confirm new password"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          password_update_form.controls['confPassword'].hasError('required') &&
+          password_update_form.controls['confPassword'].touched
+        "
+      >
+        Please confirm new password
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          password_update_form.controls['confPassword'].hasError('pattern') &&
+          password_update_form.controls['confPassword'].touched
+        "
+      >
+        Please enter valid password
+      </div>
+    </div>
+
+    <button [disabled]="loading" type="submit" class="btn update_password_btn">
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,90 @@
+<div class="appointment_modal_div">
+  <form
+    [formGroup]="appointment_form"
+    autocomplete="off"
+    (submit)="add_appointment()"
+  >
+    <div class="form-group" *ngIf="departments">
+      <label for="department">Department:</label>
+      <select id="department" formControlName="department">
+        <option value="" selected disabled>Select department...</option>
+        <ng-container *ngFor="let item of departments">
+          <option [value]="item.name">{{ item.name }}</option>
+        </ng-container>
+      </select>
+      <div
+        *ngIf="
+          appointment_form.controls['department'].hasError('required') &&
+          appointment_form.controls['department'].touched
+        "
+        class="text-danger"
+      >
+        Please select department
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="case">Case:</label>
+      <textarea
+        id="case"
+        class="form-control"
+        formControlName="case"
+        placeholder="Enter case..."
+      >
+      </textarea>
+      <div
+        *ngIf="
+          appointment_form.controls['case'].hasError('required') &&
+          appointment_form.controls['case'].touched
+        "
+        class="text-danger"
+      >
+        Please enter case
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input
+        type="text"
+        id="date"
+        class="form-control"
+        #dp="bsDatepicker"
+        readonly
+        [minDate]="minDate"
+        placeholder="Select date..."
+        bsDatepicker
+        formControlName="date"
+      />
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+
+    <div class="form-group">
+      <label for="time">Time:</label>
+      <input
+        id="time"
+        class="form-control"
+        atp-time-picker
+        readonly
+        type="time"
+        placeholder="Select time"
+        formControlName="time"
+        (click)="open()"
+      />
+      <i class="fa fa-clock"></i>
+    </div>
+
+    <div class="app_btn_grp">
+      <button
+        type="button"
+        (click)="modalRef.hide()"
+        class="btn btn-sm cancel_btn"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-sm app_btn">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

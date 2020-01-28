@@ -1,0 +1,139 @@
+.login_btn {
+  border: 1px solid black;
+  width: 110px;
+}
+
+.admin_login_btn {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 0;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 13px;
+  background: #5e29ff;
+  background: -moz-linear-gradient(left, #5e29ff 1%, #7651e6 100%);
+  background: -webkit-linear-gradient(left, #5e29ff 1%, #7651e6 100%);
+  background: linear-gradient(to right, #5e29ff 1%, #7651e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e29ff', endColorstr='#7651e6',GradientType=1 );
+  color: #fff;
+  display: block;
+  min-width: 150px;
+  margin: 0 auto;
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
+  border: 0px;
+}
+.admin_login_btn:hover {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7651e6+0,5e29ff+99 */
+  background: #7651e6; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #7651e6 0%,
+    #5e29ff 99%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #7651e6 0%,
+    #5e29ff 99%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #7651e6 0%,
+    #5e29ff 99%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7651e6', endColorstr='#5e29ff',GradientType=1 ); /* IE6-9 */
+}
+
+.form-control {
+  height: 46px;
+  border: 1px solid #d7d7d7;
+}
+.do_not_have_account {
+  margin: 30px 0 0;
+  font-size: 15px;
+  color: #2a2d36;
+}
+
+.do_not_have_account a {
+  color: #2a2d36;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.login_form_div .form-group{
+  position: relative;
+}
+.login_form_div .form-group i {
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    height: 20px;
+    display: block;
+    width: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px auto;
+}
+.login_form_div .form-group i.icon_password {
+    background-image: url(src/assets/images/password.png);
+    background-size: auto 17px;
+}
+.login_form_div .form-group i.icon_email {
+    background-image: url(src/assets/images/email.png);
+}
+.socail_login_form {
+    text-align: center;
+}
+.socail_login_form .or {
+    position: relative;
+    font-size: 12px;
+    color: #ababab;
+    margin: 20px 0;
+}
+.socail_login_form .or:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #ababab75;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.socail_login_form span {
+    background-color: #ffffff;
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+}
+.socail_login_form ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.socail_login_form ul li a {
+    background-color: #3c589c;
+    color: #ffffff;
+    height: 40px;
+    display: inline-block;
+    width: 40px;
+    line-height: 45px;
+    border-radius: 100px;
+    margin: 0 3px 0;
+}
+.socail_login_form ul li a i {
+    font-size: 17px;
+}
+.socail_login_form ul li a i.fab.fa-google-plus-g {
+    font-size: 19px;
+    position: relative;
+    left: 1px;
+}
+.socail_login_form ul li:last-child a {
+    background-color: #df4b3b;
+}
+

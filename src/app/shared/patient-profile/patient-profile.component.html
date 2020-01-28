@@ -1,0 +1,86 @@
+<div class="bread_crumb">
+  <ol class="breadcrumb breadcrumb-arrow">
+    <li><a href="#" [routerLink]="['/admin/patient']">Patients</a></li>
+    <li>{{ patient && patient.name }}</li>
+  </ol>
+</div>
+
+<ng-container *ngIf="patient">
+  <div class="profile_card">
+    <div class="upper_layer">
+      <img
+        [src]="
+          patient.profile_pic
+            ? patient.profile_pic
+            : 'assets/images/user-placeholder.png'
+        "
+        [alt]="patient.name"
+      />
+
+      <div class="right_upper_layer">
+        <div class="patient_name">
+          <h3>{{ patient.name }}</h3>
+          <span>{{ patient.gender }}</span>
+        </div>
+
+        <!-- <div class="blood_group">
+          <span> {{ patient.blood_group }} </span>
+        </div> -->
+
+        <div class="age" *ngIf="patient.dob && patient.dob !== ''">
+          <span> {{ getAge(patient.dob) }} years</span>
+        </div>
+
+        <!-- <div class="address">
+          <span> {{ patient.address }}</span>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="lower_layer">
+      <span><i class="fas fa-envelope-open"></i>{{ patient.email }}</span>
+      <span *ngIf="patient.phone"
+        ><i class="fas fa-phone"></i>{{ patient.phone }}</span
+      >
+      <span *ngIf="patient.address"
+        ><i class="fas fa-map-marker-alt"></i> {{ patient.address }}
+      </span>
+
+      <span *ngIf="patient.dob && patient.dob !== ''">
+        <i class="fas fa-calendar-alt"></i> {{ patient.dob | date: "longDate" }}
+      </span>
+    </div>
+  </div>
+
+  <h4 class="appointments_clas">Appointments</h4>
+
+  <div class="appointment_table">
+    <table id="appointment_table" class="table">
+      <thead>
+        <tr>
+          <th class="no-sort">#</th>
+          <th>Doctor</th>
+          <th>Timings</th>
+          <th class="no-sort">Date</th>
+          <th class="no-sort">Status</th>
+          <th class="no-sort"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of appointments">
+          <td>{{ item.appointment_number }}</td>
+          <td>{{ item.doctor.name }}</td>
+          <td>{{ getTime(item.slot.from) }} - {{ getTime(item.slot.to) }}</td>
+          <td>{{ item.slot.date | date: "fullDate" }}</td>
+          <td>
+            <span *ngIf="item.status === '0'">Cancelled</span>
+            <span *ngIf="item.status === '1'">Active</span>
+            <span *ngIf="item.status === '2'">Completed</span>
+            <span *ngIf="item.status === '3'">Rescheduled</span>
+          </td>
+          <td>Delete</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>

@@ -1,0 +1,43 @@
+<ng-container *ngIf="!loading; else loader">
+  <ng-container *ngIf="updates && updates.length > 0; else no_data">
+    <div *ngFor="let item of updates" class="updates_card card unread">
+      <div class="card-body">
+        <div class="left w-25">
+          <img [src]="item.image" />
+        </div>
+
+        <div class="center w-50">
+          <span class="title">
+            {{ item.title }}
+          </span>
+          <small>
+            {{ item.description }}
+          </small>
+        </div>
+
+        <div class="notiTime w-25">
+          <small>
+            {{ getTime(item.createdAt) }}
+          </small>
+        </div>
+      </div>
+
+      <!-- <div class="time_update">
+          <span (click)="delete(item.id)" class="cross">&times;</span>
+         
+        </div> -->
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-template #no_data>
+  <div class="no_update_data">
+    <span> No updates yet !!! </span>
+  </div>
+</ng-template>
+
+<ng-template #loader>
+  <div class="loader_updates">
+    <img src="assets/images/three-bar-loader.gif" />
+  </div>
+</ng-template>

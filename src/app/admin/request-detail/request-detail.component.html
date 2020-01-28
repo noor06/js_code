@@ -1,0 +1,55 @@
+<ng-container *ngIf="request_detail">
+  <div class="modal-header">
+    <h5 class="header">Hospital change request</h5>
+    <span (click)="closeModal()" class="pull-right">
+      &times;
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="request">
+      <span>
+        Dr. {{ request_detail.doctor_data.name }} wants to work with
+        {{ request_detail.hospital_data.name }}
+      </span>
+
+      <!-- <span>
+            Dr. {{ request_detail.doctor_data.name }} wants to work with
+            {{ request_detail.hospital_data.name }}
+          </span> -->
+
+      <!-- <ng-template #status_div>
+        <span *ngIf="request_detail.request.status === 'confirmed'"
+          ><i class="fas fa-check-circle"></i
+        ></span>
+      </ng-template> -->
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <ng-template #status_div>
+      <span class="status_span" *ngIf="request_detail.request.status === 'confirmed'">
+        <i class="fas fa-check-circle"></i> Approved
+      </span>
+    </ng-template>
+    <div
+      class="btn-grp"
+      *ngIf="request_detail.request.status === 'pending'; else status_div"
+    >
+      <button
+        type="button"
+        (click)="update_request(request_detail.request, 'confirmed')"
+        class="btn btn-sm"
+      >
+        Accept
+      </button>
+      <button
+        type="button"
+        (click)="update_request(item, 'cancelled')"
+        class="btn btn-sm reject_btn"
+      >
+        Reject
+      </button>
+    </div>
+  </div>
+</ng-container>

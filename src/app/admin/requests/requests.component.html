@@ -1,0 +1,41 @@
+<div class="table-responsive">
+<table class="table table-striped" *ngIf="requests">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Requestee</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of requests">
+      <td>{{ item.request_id }}</td>
+      <td>{{ item.requestee }}</td>
+      <td>
+        <span *ngIf="item.type === 'change_hospital'">
+          Change hospital request
+        </span>
+      </td>
+      <td>
+        <span *ngIf="item.status === 'pending'">Pending</span>
+        <span *ngIf="item.status === 'confirmed'">Approved</span>
+        <span *ngIf="item.status === 'cancelled'">Rejected</span>
+      </td>
+      <td>
+        <a href="javascript:void(0)" (click)="open(request_detail, item.id)">
+          View Details
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<ng-template #request_detail>
+  <app-request-detail
+    [id]="selected_id"
+    [modalRef]="modalRef"
+    (callBack)="callBackReceived()"
+  ></app-request-detail>
+</ng-template>

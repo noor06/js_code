@@ -1,0 +1,31 @@
+.panel.panel-bd.cardbox {
+  background: #00bcd4;
+  border-radius: 15px;
+  padding: 20px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.panel-body {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.panel-body i {
+  font-size: 40px;
+}
+
+.panel-body h4 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.panel-body h2 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.bar_chart {
+  margin: 50px auto;
+}

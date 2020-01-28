@@ -1,0 +1,137 @@
+input#search_text {
+  border: 1px solid #e0dadef0;
+  width: 630px;
+  height: 35px;
+  padding: 0 35px;
+  border-radius: 20px;
+  font-size: 14px;
+  max-width: 100%;
+}
+.gps-locator {
+  cursor: pointer;
+  right: 25px;
+  width: 25px;
+  height: auto;
+  top: 5px;
+  filter: opacity(0.3);
+}
+
+.gps-locator-active {
+  right: 25px;
+  width: 25px;
+  height: auto;
+  top: 5px;
+  filter: opacity(1);
+  cursor: pointer;
+}
+.search_input .fa-search {
+  padding: 0px 10px;
+}
+
+.select_filters {
+  border: 0;
+  width: 100%;
+  background: #ddd;
+  height: 28px;
+  font-size: 14px;
+}
+
+.none {
+  display: none;
+}
+
+/* input#search_text:hover, */
+input#search_text:focus {
+  background: #d8f5f5;
+  border: 0;
+}
+.filter_div .dropdown-toggle,
+.search_div .dropdown-toggle {
+  background: #ebf3fa !important;
+  padding: 10px 8px;
+  border-radius: 4px;
+  width: 33px;
+  box-shadow: none;
+  height: 35px;
+}
+button.btn.clr_filter_btn.btn-sm.site_btn {
+  background: #148282;
+}
+.filter_div .dropdown-toggle:after,
+.search_div .dropdown-toggle:after {
+  content: none !important;
+}
+.filter_div .dropdown-toggle i,
+.search_div .dropdown-toggle i {
+  color: #5d7586;
+  font-size: 16px;
+}
+.search_input img {
+  position: absolute;
+}
+.search_input {
+  padding: 0 15px 0 15px;
+  max-width: calc(100% - 360px);
+  position: relative;
+}
+.search_input i.fa-search {
+  color: #626262;
+  font-size: 12px;
+  display: inline-block;
+  margin-right: 10px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-46%);
+}
+.search_div .dropdown {
+  position: static;
+}
+.search_div .dropdown-menu {
+  left: 4px;
+  top: 86px;
+  width: 100%;
+  max-width: calc(100% - 8px);
+}
+
+.filter_div .dropdown-menu {
+  padding: 15px;
+  min-width: 190px;
+}
+input.filter_location.form-control {
+  margin: 0 0 6px;
+}
+
+span.badge.badge-primary {
+  position: relative;
+  top: -16px;
+  right: 0px;
+  border-radius: 18px;
+  font-size: 12px;
+}
+
+.badge-primary {
+  color: #611c1c;
+  background-color: #99cc95;
+}
+@media (max-width: 767px) {
+  .search_input {
+    max-width: 100%;
+  }
+  .gps-locator,
+  .gps-locator-active {
+    margin: 0;
+  }
+}
+@media (max-width: 480px) {
+  .gps-locator,
+  .gps-locator-active {
+    margin: 12px 0 0;
+  }
+  .search_input img {
+    top: -7px;
+  }
+  .navbar-nav li {
+    margin: 0 0 0 10px;
+  }
+}

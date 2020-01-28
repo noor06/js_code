@@ -1,0 +1,6 @@
+#doc_prof:hover {
+  font-weight: 600;
+  color: #70a1ff;
+  text-decoration: underline;
+  cursor: pointer;
+}

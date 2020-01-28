@@ -1,0 +1,112 @@
+<div class="sidenav">
+  <div class="sidebar_logo">
+    <img
+      class="w3-animate-zoom"
+      src="assets/images/logo.png"
+      alt="logo"
+      [routerLink]="['/admin/dashboard']"
+    />
+  </div>
+  <div class="sidebar_options">
+    <ul>
+      <li title="Dashboard">
+        <a
+          (click)="nav_heading('Dashboard')"
+          [routerLink]="['/admin/dashboard']"
+          class="dashboard_link"
+        >
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li title="Hospitals">
+        <a
+          (click)="nav_heading('Hospitals')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/hospital']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-hospital"></i>
+          <span>Hospitals</span>
+        </a>
+      </li>
+      <li title="Doctors">
+        <a
+          (click)="nav_heading('Doctors')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/doctor']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-user-md"></i>
+          <span>Doctors</span>
+        </a>
+      </li>
+      <li title="Appointments">
+        <a
+          (click)="nav_heading('Appointments')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/appointment']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-clock"></i>
+          <span>Appointments</span>
+        </a>
+      </li>
+      <li title="Slots">
+        <a
+          (click)="nav_heading('Slots')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/slot']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-user-clock"></i>
+          <span>Slots</span>
+        </a>
+      </li>
+      <li title="Departments">
+        <a
+          (click)="nav_heading('Departments')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/department']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-building"></i>
+          <span>Departments</span>
+        </a>
+      </li>
+      <li title="Patients">
+        <a
+          (click)="nav_heading('Patients')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/patient']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fas fa-user-injured"></i>
+          <span>Patients</span>
+        </a>
+      </li>
+      <li title="Requests">
+        <a
+          (click)="nav_heading('Requests')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/request']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fas fa-clipboard-list"></i>
+          <span>Requests</span>
+        </a>
+      </li>
+      <li title="Pain Type">
+        <a
+          (click)="nav_heading('Pain Type')"
+          routerLinkActive="active"
+          [routerLink]="['/admin/pain-type']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fas fa-clipboard-list"></i>
+          <span>Pain Type</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

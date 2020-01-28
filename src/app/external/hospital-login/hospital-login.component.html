@@ -1,0 +1,28 @@
+<div class="hospital_login_form">
+  <form [formGroup]="hospital_login_form" autocomplete="off" (submit)="login()">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter Clinic/Hospital Id"
+        formControlName="h_id"
+        autofocus
+      />
+      <i class="icon_email"></i>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter password"
+        formControlName="password"
+      />
+      <i class="icon_password"></i>
+    </div>
+
+    <button type="submit" class="btn btn-sm h_login_btn">
+      Login
+    </button>
+  </form>
+</div>

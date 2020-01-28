@@ -1,0 +1,10 @@
+<ng-container *ngIf="loading">
+  <div class="main_loader_div">
+    <img src="../assets/images/loader.gif" />
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading">
+  <router-outlet></router-outlet>
+  <!-- <app-footer></app-footer> -->
+</ng-container>

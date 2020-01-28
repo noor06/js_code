@@ -1,0 +1,109 @@
+<ng-container *ngIf="hospital">
+  <section class="section_sep">
+    <div class="hospital_short_info">
+      <div class="hospital_img">
+        <input type="file" (change)="upload_image($event)" />
+        <img
+          [src]="hospital.image || 'assets/images/hospital_placeholder.png'"
+          [alt]="hospital.name"
+        />
+        <div class="hpt_name">{{ hospital.name }}</div>
+      </div>
+    </div>
+  </section>
+  <section class="section_sep">
+    <div class="hospital_short_info">
+      <div class="clinic_info">
+        <h4>Overview</h4>
+        <div class="card desc_card">
+          <pre>{{ hospital.overview }}</pre>
+        </div>
+      </div>
+    </div>
+    <div class="contact_info_card">
+      <div class="row">
+        <div class="col-md-4 text-center mb-3 mb-md-4">
+          <span class="info">
+            <i class="fas fa-map-marked-alt"></i>
+            {{ hospital.address }}
+          </span>
+        </div>
+        <div class="col-md-4 text-center mb-3 mb-md-4">
+          <span class="info">
+            <i class="fas fa-phone"></i> {{ hospital.phone }}
+          </span>
+        </div>
+        <div class="col-md-4 text-center mb-3 mb-md-4">
+          <span class="info">
+            <i class="fas fa-envelope"></i> {{ hospital.email }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section_sep">
+    <div class="hospital_doctor_list_div">
+      <h4 class="manage_doc_h">Manage Doctors</h4>
+
+      <table id="doctors" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Speciality</th>
+            <th>Qualification</th>
+            <th>Experience</th>
+            <!-- <th class="no-sort">Operations</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="doctor_hover_row"
+            *ngFor="let item of doctors"
+            [routerLink]="[
+              '/admin/hospital/',
+              item.hospitalId,
+              'doctor',
+              item.id
+            ]"
+          >
+            <td>{{ item.designation }}</td>
+            <td>{{ item.department }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.specialities }}</td>
+            <td>{{ item.qualification }}</td>
+            <td>
+              {{ item.experience }}
+              <span *ngIf="item.experience > 1">years</span
+              ><span *ngIf="item.experience === 1">year</span>
+            </td>
+            <!-- <td>
+                            <button
+                            type="button"
+                            class="btn btn-sm delete_doctor_btn"
+                            (click)="deleteDoctor(item.id)"
+                            >
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="add_hospital_button_div">
+      <button
+        type="button"
+        class="btn add_btn"
+        (click)="add_doctor_navigation()"
+      >
+        Add doctor
+      </button>
+    </div>
+  </section>
+</ng-container>

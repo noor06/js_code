@@ -1,0 +1,103 @@
+<div class="dep_table">
+  <table id="departments" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Department</th>
+        <th class="no-sort">Description</th>
+        <th class="no-sort">
+          Operations
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of departments; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+          <button
+            class="delete_dep_btn btn btn-sm"
+            type="button"
+            (click)="delete_department(item.id, item.name)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="add_dep">
+    <button
+      type="button"
+      class="btn dep_form_add add_btn"
+      (click)="open_dep_form(dep_form)"
+    >
+      Add Department
+    </button>
+  </div>
+</div>
+
+<!-- <button
+      class="add_hospital_btn btn add_btn"
+      type="button"
+      (click)="add_hospital_navigation()"
+    >
+      Add hospital
+    </button> -->
+
+<ng-template #dep_form>
+  <div class="dep_form p-4">
+    <form
+      [formGroup]="department_form"
+      autocomplete="off"
+      (submit)="add_department()"
+    >
+      <div class="form-group">
+        <label>Enter department name:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Department name..."
+          formControlName="name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label
+          >Enter department description
+          <i style="text-transform: lowercase">(max characters 1000)</i>
+          :</label
+        >
+        <textarea
+          class="form-control"
+          maxlength="1000"
+          placeholder="Department description..."
+          formControlName="description"
+        ></textarea>
+      </div>
+
+      <div class="dep_form_btn_grp">
+        <button
+          type="button"
+          (click)="modalRef.hide()"
+          class="btn btn-sm cancel_dep"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="!department_form.valid"
+          type="submit"
+          [class]="
+            !department_form.valid
+              ? 'btn btn-sm submit_dep disabled_btn'
+              : 'btn btn-sm submit_dep'
+          "
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

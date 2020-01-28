@@ -1,0 +1,10 @@
+.main_loader_div img {
+  max-width: 150px;
+}
+
+.main_loader_div {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}

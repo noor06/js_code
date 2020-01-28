@@ -1,0 +1,69 @@
+<div class="add_slot_form">
+  <form [formGroup]="slot_form" autocomplete="off" (submit)="add_slot()">
+    <div class="form-group">
+      <label for="slot_date">
+        Select Date
+      </label>
+      <input
+        type="text"
+        id="slot_date"
+        class="form-control"
+        #dp="bsDatepicker"
+        readonly
+        [minDate]="minDate"
+        placeholder="Enter slot date..."
+        bsDatepicker
+        formControlName="date"
+      />
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="dp.toggle()"
+        [attr.aria-expanded]="dp.isOpen"
+      >
+        <i class="fa fa-calendar"></i>
+      </button>
+    </div>
+
+    <div class="time_div_group">
+      <div class="form-group">
+        <label for="from_time">From:</label>
+        <input
+          id="from_time"
+          atp-time-picker
+          readonly
+          type="time"
+          formControlName="from"
+          (click)="open()"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="to_time">To:</label>
+        <input
+          id="to_time"
+          atp-time-picker
+          readonly
+          type="time"
+          formControlName="to"
+          (click)="open()"
+        />
+      </div>
+    </div>
+
+    <div class="btn-grp">
+      <button
+        type="button"
+        (click)="modalRef.hide()"
+        class="btn btn-sm cancel_btn"
+      >
+        Cancel
+      </button>
+
+      <button class="add_slot_btn btn btn-sm" type="submit">
+        <span *ngIf="!loading">Add slot</span>
+        <span *ngIf="loading">Adding ...</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,117 @@
+<div *ngIf="doctor" class="doc_profile w-100">
+  <div class="row">
+    <div class="col-12">
+      <div class="media border-bottom pb-3 mb-4">
+        <div class="media-left">
+          <img
+            [src]="
+              doctor.profile_pic || 'assets/images/doctor_placeholder.jpeg'
+            "
+            alt=""
+            class="mr-3 mr-lg-4"
+          />
+        </div>
+        <div class="media-body">
+          <h4>{{ doctor.name }}</h4>
+          <div class="media-points w-100 mb-2">
+            <p><span>Specializes:</span>{{ doctor.specialities }}</p>
+            <p>
+              <span>Experience:</span>{{ doctor.experience }}
+              <ng-container *ngIf="doctor.experience < 2">year</ng-container>
+              <ng-container *ngIf="doctor.experience > 1">years</ng-container>
+            </p>
+            <p><span>Qualification:</span>{{ doctor.qualification }}</p>
+            <p><span>Mobile:</span>{{ doctor.phone }}</p>
+          </div>
+          <div class="d-flex flex-wrap">
+            <button
+              type="button"
+              (click)="book(app_form)"
+              class="btn btn-primary mb-3 mr-2"
+            >
+              Book Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--  tabs section -->
+      <!-- Nav pills -->
+      <div class="tabs_sec">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">Menu 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu1">Menu 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu2">Menu 3</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="home" class="tab-pane p-3 active">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+              aliquam velit eu ex vulputate, id rhoncus orci rutrum. Aenean
+              condimentum, velit fermentum feugiat aliquam, eros nunc convallis
+              urna, ut aliquam felis arcu non augue. Sed sit amet hendrerit
+              justo, viverra suscipit velit. Maecenas facilisis, sapien in
+              viverra cursus, sem eros auctor ipsum, non condimentum lectus
+              neque sed turpis. Donec eu lorem hendrerit, dictum est non, mollis
+              orci. Aliquam eget ante quis massa vehicula bibendum vitae vitae
+              nulla. Donec at bibendum nibh. Nulla eget velit eu nibh dapibus
+              fringilla id ut lacus. Fusce id rhoncus magna, non venenatis
+              massa. Proin vulputate ullamcorper egestas. Duis pharetra purus
+              arcu.
+            </p>
+          </div>
+          <div id="menu1" class="tab-pane p-3 fade">
+            <p>
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit. Duis aliquam velit eu ex
+              vulputate, id rhoncus orci rutrum. Aenean condimentum, velit
+              fermentum feugiat aliquam, eros nunc convallis urna, ut aliquam
+              felis arcu non augue. Sed sit amet hendrerit justo, viverra
+              suscipit velit. Maecenas facilisis, sapien in viverra cursus, sem
+              eros auctor ipsum, non condimentum lectus neque sed turpis. Donec
+              eu lorem hendrerit, dictum est non, mollis orci. Aliquam eget ante
+              quis massa vehicula bibendum vitae vitae nulla. Donec at bibendum
+              nibh. Nulla eget velit eu nibh dapibus fringilla id ut lacus.
+              Fusce id rhoncus magna, non venenatis massa. Proin vulputate
+              ullamcorper egestas. Duis pharetra purus arcu.
+            </p>
+          </div>
+          <div id="menu2" class="tab-pane p-3 fade">
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam. Lorem ipsum
+              dolor sit amet, consectetur adipiscing elit. Duis aliquam velit eu
+              ex vulputate, id rhoncus orci rutrum. Aenean condimentum, velit
+              fermentum feugiat aliquam, eros nunc convallis urna, ut aliquam
+              felis arcu non augue. Sed sit amet hendrerit justo, viverra
+              suscipit velit. Maecenas facilisis, sapien in viverra cursus, sem
+              eros auctor ipsum, non condimentum lectus neque sed turpis. Donec
+              eu lorem hendrerit, dictum est non, mollis orci. Aliquam eget ante
+              quis massa vehicula bibendum vitae vitae nulla. Donec at bibendum
+              nibh. Nulla eget velit eu nibh dapibus fringilla id ut lacus.
+              Fusce id rhoncus magna, non venenatis massa. Proin vulputate
+              ullamcorper egestas. Duis pharetra purus arcu.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--  tabs section -->
+    </div>
+  </div>
+</div>
+
+<ng-template #app_form>
+  <app-appointment-form
+    [obj]="obj"
+    [modalRef]="modalRef"
+    (callBack)="booked()"
+  ></app-appointment-form>
+</ng-template>

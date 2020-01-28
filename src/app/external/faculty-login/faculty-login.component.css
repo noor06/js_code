@@ -1,0 +1,66 @@
+.h_login_btn {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 40px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 13px;
+  background: #5e29ff;
+  background: -moz-linear-gradient(left, #5e29ff 1%, #7651e6 100%);
+  background: -webkit-linear-gradient(left, #5e29ff 1%, #7651e6 100%);
+  background: linear-gradient(to right, #5e29ff 1%, #7651e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e29ff', endColorstr='#7651e6',GradientType=1 );
+  color: #fff;
+  display: block;
+  min-width: 150px;
+  margin: 0 auto;
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
+  border: 0px;
+}
+.h_login_btn:hover {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7651e6+0,5e29ff+99 */
+  background: #7651e6; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #7651e6 0%,
+    #5e29ff 99%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #7651e6 0%,
+    #5e29ff 99%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #7651e6 0%,
+    #5e29ff 99%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7651e6', endColorstr='#5e29ff',GradientType=1 ); /* IE6-9 */
+}
+
+.form-control {
+  height: 46px;
+  border: 1px solid #d7d7d7;
+}
+.hospital_login_form .form-group {
+  position: relative;
+}
+.hospital_login_form .form-group i {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  height: 20px;
+  display: block;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px auto;
+}
+.hospital_login_form .form-group i.icon_password {
+  background-image: url(src/assets/images/password.png);
+  background-size: auto 17px;
+}
+.hospital_login_form .form-group i.icon_email {
+  background-image: url(src/assets/images/email.png);
+}

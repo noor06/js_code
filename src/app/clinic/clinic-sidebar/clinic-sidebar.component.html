@@ -1,0 +1,90 @@
+<div class="sidenav">
+  <div class="sidebar_logo">
+    <img class="w3-animate-zoom" src="assets/images/logo.png" alt="logo" />
+  </div>
+</div>
+
+<div class="sidenav">
+  <div class="sidebar_logo">
+    <img
+      class="w3-animate-zoom"
+      src="assets/images/logo.png"
+      alt="logo"
+      [routerLink]="['/clinic/dashboard']"
+    />
+  </div>
+  <div class="sidebar_options">
+    <ul>
+      <li title="Dashboard">
+        <a
+          (click)="nav_heading('Dashboard')"
+          [routerLink]="['/clinic/dashboard']"
+          class="dashboard_link"
+        >
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li title="Doctors">
+        <a
+          (click)="nav_heading('Doctors')"
+          routerLinkActive="active"
+          [routerLink]="['/clinic/doctor']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-user-md"></i>
+          <span>Doctors</span>
+        </a>
+      </li>
+
+      <li title="Slots">
+        <a
+          (click)="nav_heading('Slots')"
+          routerLinkActive="active"
+          [routerLink]="['/clinic/slot']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-user-clock"></i>
+          <span>Slots</span>
+        </a>
+      </li>
+
+      <li title="Appointments">
+        <a
+          (click)="nav_heading('Appointments')"
+          routerLinkActive="active"
+          [routerLink]="['/clinic/appointment']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-clock"></i>
+          <span>Appointments</span>
+        </a>
+      </li>
+
+      <li title="Departments">
+        <a
+          (click)="nav_heading('Departments')"
+          routerLinkActive="active"
+          [routerLink]="['/clinic/department']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-building"></i>
+          <span>Departments</span>
+        </a>
+      </li>
+
+      <li title="Patients">
+        <a
+          (click)="nav_heading('Patients')"
+          routerLinkActive="active"
+          [routerLink]="['/clinic/patient']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fas fa-user-injured"></i>
+          <span>Patients</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

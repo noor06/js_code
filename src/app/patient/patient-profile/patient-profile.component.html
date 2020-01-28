@@ -1,0 +1,149 @@
+<div class="patient_profile" *ngIf="patient">
+  <div class="row">
+    <div class="col-12 mb-md-3 order-md-1">
+      <h3 class="sub_heading d-flex justify-content-between">
+        Profile
+        <button
+          class="btn edit-btn"
+          type="button"
+          *ngIf="!isEdit"
+          (click)="edit_profile_clicked()"
+        >
+          Edit profile
+        </button>
+      </h3>
+    </div>
+    <div class="col-12 col-md-5 order-md-3">
+      <div class="img-block sticky-top">
+        <div class="inner-blk">
+          <img
+            [src]="
+              patient.profile_pic
+                ? patient.profile_pic
+                : 'assets/images/user-placeholder.jpg'
+            "
+            [alt]="patient.name"
+          />
+          <label *ngIf="isEdit" for="image_upload">
+            <input
+              id="image_upload"
+              type="file"
+              title="Enter file"
+              (change)="image_upload($event)"
+              class="btn"
+            />
+            <i class="fas fa-camera-retro"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-7 col-lg-6 order-md-2">
+      <form
+        autocomplete="off"
+        (submit)="updateProfile()"
+        [formGroup]="patient_profile_form"
+      >
+        <div class="form-group " *ngIf="isEdit">
+          <div class="row">
+            <div class="col-md-6">
+              <label>First name:</label>
+              <input
+                *ngIf="isEdit"
+                type="text"
+                class="form-control"
+                formControlName="first_name"
+                placeholder="Enter first name..."
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label>Last name:</label>
+              <input
+                *ngIf="isEdit"
+                type="text"
+                formControlName="last_name"
+                class="form-control"
+                placeholder="Enter last name..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="!isEdit">
+          <label>Full name:</label>
+          <input
+            *ngIf="!isEdit"
+            type="text"
+            class="disabled_input form-control"
+            disabled
+            [value]="patient.full_name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Email:</label>
+          <input
+            *ngIf="isEdit"
+            type="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="Enter email..."
+          />
+          <input
+            *ngIf="!isEdit"
+            type="text"
+            class="disabled_input form-control"
+            disabled
+            [value]="patient.email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Phone:</label>
+          <intl-input-phone
+            *ngIf="isEdit"
+            [ConfigurationOption]="configOption"
+            [CountryList]="customCountryList"
+            (OnNumberChange)="onNumberChange($event)"
+          ></intl-input-phone>
+          <input
+            *ngIf="!isEdit"
+            type="text"
+            class="disabled_input form-control"
+            disabled
+            [value]="patient.phone"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Address:</label>
+          <textarea
+            *ngIf="isEdit"
+            formControlName="address"
+            class="form-control"
+            placeholder="Enter address..."
+          >
+          </textarea>
+          <textarea
+            *ngIf="!isEdit"
+            disabled
+            class="disabled_input form-control"
+            [value]="patient.address"
+          >
+          </textarea>
+        </div>
+
+        <div *ngIf="isEdit" class="form-group update-profile-btn-grp">
+          <button
+            class="btn cancel-btn"
+            (click)="cancel_update()"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button class="btn update-btn" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

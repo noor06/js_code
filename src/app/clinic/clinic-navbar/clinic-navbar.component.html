@@ -1,0 +1,77 @@
+<div class="navbar_div">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="nav_logo visible-sm visible-xs">
+            <img src="assets/images/logo-fav.png" alt="My Treatment Time" />
+          </div>
+          <button class="navbar-toggler" type="button" (click)="toggle_navbar()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <span class="nav-heading">
+            {{ nav_heading }}
+          </span>
+      
+          <div class="" id="navbarNav">
+            <ul class="navbar-nav">
+              <!-- <li
+                [routerLink]="['/admin/updates']"
+                class="update_bell"
+                title="Updates"
+                (click)="updates_heading('Updates')"
+              >
+                <i class="fas fa-bell"></i>
+                <span class="badge badge-primary" *ngIf="updates_count !== 0">
+                  {{ updates_count }}
+                </span>
+              </li> -->
+              <li>
+                <div class="dropdown">
+                  <!-- <a
+                    href=""
+                    class="dropdown-toggle"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <div class="user_img">
+                      <img
+                        [src]="
+                          admin && admin.profile_pic
+                            ? admin.profile_pic
+                            : 'assets/images/john.png'
+                        "
+                        alt="user"
+                      />
+                    </div>
+                    <span class="user_name">{{ admin && admin.name }}</span>
+                  </a> -->
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a
+                      (click)="updates_heading('Account')"
+                      class="dropdown-item"
+                      [routerLink]="['/clinic/account']"
+                    >
+                      My Account
+                    </a>
+                    <a
+                      class="dropdown-item"
+                      href="javascript:void(0)"
+                      (click)="logout()"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item active">
+                <button (click)="logout()" class="nav-link btn btn-sm logout_nav_btn">
+                  <i class="fa fa-sign-out-alt"></i> Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      
+      <div id="menu_closer" class="menu_closer" (click)="toggle_navbar()"></div>
+      

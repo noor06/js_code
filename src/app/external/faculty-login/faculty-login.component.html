@@ -1,0 +1,48 @@
+<div class="hospital_login_form">
+  <form [formGroup]="faculty_login_form" autocomplete="off" (submit)="login()">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter email"
+        formControlName="email"
+        autofocus
+      />
+      <i class="icon_email"></i>
+
+      <div
+        *ngIf="
+          faculty_login_form.controls['email'].hasError('required') &&
+          faculty_login_form.controls['email'].touched
+        "
+        class="text-danger"
+      >
+        Please enter email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter password"
+        formControlName="password"
+      />
+      <i class="icon_password"></i>
+      <div
+        *ngIf="
+          faculty_login_form.controls['password'].hasError('required') &&
+          faculty_login_form.controls['password'].touched
+        "
+        class="text-danger"
+      >
+        Please enter password
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="loading" class="btn btn-sm h_login_btn">
+      <span *ngIf="!loading">Login</span>
+      <span *ngIf="loading">Logging in...</span>
+    </button>
+  </form>
+</div>

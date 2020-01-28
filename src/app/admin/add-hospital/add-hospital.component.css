@@ -1,0 +1,115 @@
+.fa-clock {
+  float: right;
+  margin-top: -25px;
+  margin-right: 8px;
+}
+
+label {
+  color: #b98e94;
+}
+
+input#to_time,
+input#from_time {
+  cursor: text;
+}
+/* 
+#email_input {
+  height: 46px;
+} */
+
+input.form-control {
+  background: #fff !important;
+}
+
+h5,
+.h5 {
+  margin: 0 0 25px;
+  font-weight: 600;
+  font-family: montserrat;
+  text-decoration: underline;
+}
+
+/* Saprater */
+hr {
+  border: 0;
+  border-top: 2px dashed rgba(0, 0, 0, 0.1);
+  max-width: 240px;
+  margin: 2rem auto;
+  position: relative;
+}
+hr:after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  background: #ddd;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateZ(45deg);
+  left: 50%;
+}
+
+.multiselect-dropdown .dropdown-btn {
+  border: 1px solid #ced4db !important;
+}
+
+.add_doctor_form .btn-grp {
+  float: right;
+}
+
+button.btn.submit_btn {
+  margin-left: 12px;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #ced4db;
+  padding: 10px 10px;
+  height: 150px;
+}
+
+.upload_img {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  /* border: 1px solid #ced4da;
+  box-shadow: 0 0 6px 0 #ddd; */
+  position: relative;
+}
+.upload_img > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.upload_img input.form-control {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+}
+.upload_img .up_txt {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  opacity: 0.8;
+  z-index: 1;
+  cursor: pointer;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  padding: 12px 30px;
+  background-color: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  text-align: center;
+  font-size: 12px !important;
+  line-height: 12px;
+}
+
+.hide_section {
+  background: transparent !important;
+}

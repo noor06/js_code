@@ -1,0 +1,287 @@
+<div class="register_page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="register_left text-center">
+          <a href="/" class="register_logo"
+            ><img src="assets/images/logo-white.png" alt="My Treatment Time"
+          /></a>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            volutpat non quam quis tristique. Donec posuere blandit massa ut
+            viverra. Proin convallis malesuada rutrum
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-7 pr-0">
+        <div class="patient_register_form">
+          <div class="p_r_f_inner">
+            <h4>Patient registration form</h4>
+            <form
+              autocomplete="off"
+              (submit)="register()"
+              [formGroup]="register_form"
+            >
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="first_name"
+                      placeholder="Enter first name..."
+                    />
+                    <div
+                      *ngIf="
+                        register_form.controls['first_name'].hasError(
+                          'required'
+                        ) && register_form.controls['first_name'].touched
+                      "
+                      class="text-danger"
+                    >
+                      Please enter first name
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="last_name"
+                      placeholder="Enter last name..."
+                    />
+                    <div
+                      *ngIf="
+                        register_form.controls['last_name'].hasError(
+                          'required'
+                        ) && register_form.controls['last_name'].touched
+                      "
+                      class="text-danger"
+                    >
+                      Please enter last name
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Enter email..."
+                />
+                <div
+                  *ngIf="
+                    register_form.controls['email'].hasError('pattern') &&
+                    register_form.controls['email'].touched
+                  "
+                  class="text-danger"
+                >
+                  Please enter valid email
+                </div>
+                <div
+                  *ngIf="
+                    register_form.controls['email'].hasError('required') &&
+                    register_form.controls['email'].touched
+                  "
+                  class="text-danger"
+                >
+                  Please enter email
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  #dp="bsDatepicker"
+                  readonly
+                  placeholder="Date of birth..."
+                  bsDatepicker
+                  formControlName="dob"
+                />
+                <i class="fas fa-calendar-alt"></i>
+                <div
+                  *ngIf="
+                    register_form.controls['dob'].hasError('required') &&
+                    register_form.controls['dob'].touched
+                  "
+                  class="text-danger"
+                >
+                  Please choose date of birth
+                </div>
+              </div>
+
+              <div class="form-group">
+                <intl-input-phone
+                  [ConfigurationOption]="configOption"
+                  (OnNumberChange)="onNumberChage($event)"
+                  (OnIsRequiredChange)="requiredFlagChange($event)"
+                  [CountryList]="customCountryList"
+                ></intl-input-phone>
+
+                <div
+                  *ngIf="
+                    register_form.controls['phone'].hasError('required') &&
+                    register_form.controls['phone'].touched
+                  "
+                  class="text-danger"
+                >
+                  Please enter phone number
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <select
+                      class="sex_select form-control"
+                      formControlName="sex"
+                    >
+                      <option value="" selected>
+                        Select gender...
+                      </option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="transgender">Transgender</option>
+                    </select>
+                    <div
+                      *ngIf="
+                        register_form.controls['sex'].hasError('required') &&
+                        register_form.controls['sex'].touched
+                      "
+                      class="text-danger"
+                    >
+                      Please select gender
+                    </div>
+                  </div>
+                </div>
+                <div class="blood-group col-sm-6">
+                  <div class="form-group">
+                    <select
+                      formControlName="blood_group"
+                      class="blood_group form-control"
+                    >
+                      <option value="" selected>
+                        Select Bloodgroup...
+                      </option>
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                    </select>
+                    <div
+                      *ngIf="
+                        register_form.controls['blood_group'].hasError(
+                          'required'
+                        ) && register_form.controls['blood_group'].touched
+                      "
+                      class="text-danger"
+                    >
+                      Please select blood group
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  class="form-control"
+                  formControlName="address"
+                  placeholder="Enter address..."
+                ></textarea>
+                <div
+                  *ngIf="
+                    register_form.controls['address'].hasError('required') &&
+                    register_form.controls['address'].touched
+                  "
+                  class="text-danger"
+                >
+                  Please enter address
+                </div>
+              </div>
+              <div class="row r_password_block">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="password"
+                      (keyup)="clearCheck()"
+                      placeholder="Enter password..."
+                    />
+                    <i
+                      *ngIf="confirmPassCheck && confirmPassFlag"
+                      class="fa fa-check text-success"
+                    ></i>
+                    <i
+                      class="fas fa-times text-danger"
+                      *ngIf="confirmPassCheck && !confirmPassFlag"
+                    ></i>
+                    <div
+                      *ngIf="
+                        register_form.controls['password'].hasError(
+                          'required'
+                        ) && register_form.controls['password'].touched
+                      "
+                      class="text-danger"
+                    >
+                      Please enter password
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      (keyup)="checkPass($event)"
+                      formControlName="confirmPassword"
+                      placeholder="Confirm password..."
+                    />
+                    <i
+                      *ngIf="confirmPassCheck && confirmPassFlag"
+                      class="fa fa-check text-success"
+                    ></i>
+                    <i
+                      class="fas fa-times text-danger"
+                      *ngIf="confirmPassCheck && !confirmPassFlag"
+                    ></i>
+                    <div
+                      *ngIf="
+                        register_form.controls['confirmPassword'].hasError(
+                          'required'
+                        ) && register_form.controls['confirmPassword'].touched
+                      "
+                      class="text-danger"
+                    >
+                      Please re-enter password
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="register_btn_grp">
+                <button
+                  class="btn cancel_btn btn-sm"
+                  (click)="cancel()"
+                  type="button"
+                >
+                  Back to login
+                </button>
+                <button class="btn register_btn btn-sm" type="submit">
+                  <span *ngIf="!loading">Submit</span>
+                  <span *ngIf="loading">Submitting...</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

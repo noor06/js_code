@@ -1,0 +1,157 @@
+.card.unread {
+  background: #c2e8ef9c;
+}
+
+.card {
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.left img {
+  height: 60px;
+  /* border-radius: 50px; */
+}
+
+.right {
+  padding: 10px 10px;
+}
+
+.center small {
+  font-size: 12px;
+  color: #c88e8d;
+}
+
+.card:hover {
+  background: #ececec;
+}
+
+span.title {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.main_update_content small {
+  font-size: 12px;
+  font-weight: 400;
+  color: #c58b8b;
+}
+
+.no_update_data {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 20px;
+  color: #b19595;
+}
+
+span.cross {
+  position: absolute;
+  top: -25px;
+  right: -10px;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  padding: 0 8px;
+  border-radius: 50px;
+  background: #fdfdfd;
+  box-shadow: 0px 1px 4px darkgrey;
+}
+
+.time_update small {
+  float: right;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #c58b8a;
+}
+
+span.user_from {
+  font-size: 16px;
+  font-weight: 600;
+  color: #675de0;
+  /* padding-bottom: 0; */
+}
+
+.card-body {
+  padding: 0 10px 0 0 !important;
+  position: relative;
+  display: flex;
+}
+
+.loader_updates {
+  text-align: center;
+}
+
+.loader_updates img {
+  filter: brightness(3.5);
+  height: 100px;
+  margin-top: 100px;
+}
+
+.left {
+  flex: 0.3;
+}
+.center {
+  flex: 2;
+  padding: 0 5px;
+}
+.notiTime {
+  flex: 0.5;
+}
+
+.center span.title {
+  font-size: 16px;
+  color: #735abf;
+}
+
+.notiTime small {
+  float: right;
+  position: absolute;
+  top: 5px;
+  right: 12px;
+  font-size: 12px;
+  color: #c58e8e;
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 767px) {
+  .center span.title {
+    font-size: 13px;
+  }
+
+  .center small {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .center small {
+    font-size: 10px;
+    color: #c88e8d;
+  }
+
+  .center span.title {
+    font-size: 12px;
+  }
+
+  .notiTime small {
+    font-size: 10px;
+  }
+
+  .left {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .card-body span.title {
+    font-size: 12px !important;
+  }
+  .center small {
+    font-size: 10px;
+    color: #c88e8d;
+  }
+}

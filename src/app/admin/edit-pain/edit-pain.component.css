@@ -1,0 +1,139 @@
+
+i.fas.fa-edit {
+    float: right;
+    margin-right: 20px;
+    font-size: 15px;
+  }
+  
+  label {
+    color: #b98e94;
+  }
+  
+  .loader img {
+    filter: brightness(3.2);
+    height: 150px;
+    width: 220px;
+  }
+  
+  .loader {
+    text-align: center;
+  }
+  
+  .edit_time {
+    background: #fff !important;
+    cursor: pointer !important;
+  }
+  
+  .form-control[readonly] {
+    background-color: #edf2f7;
+    cursor: no-drop;
+    opacity: 1;
+  }
+  
+  .none {
+    display: none;
+  }
+  
+  h5,
+  .h5 {
+    margin: 0 0 25px;
+    font-weight: 600;
+    font-family: montserrat;
+    text-decoration: underline;
+  }
+  
+  i.fas.fa-edit {
+    color: #bf8e94;
+    cursor: pointer;
+  }
+  
+  span {
+    font-size: 15px;
+  }
+  
+  .edit_btn_grp {
+    text-align: right;
+  }
+  
+  i.fa.fa-clock {
+    position: absolute;
+    top: 33px;
+    right: 25px;
+  }
+  
+  .form-group {
+    position: relative;
+  }
+  button.btn-sm.btn.edit_save_btn {
+    border-radius: 2px;
+    background: #fff !important;
+    color: #171623 !important;
+    border: 1px solid #171623;
+  }
+  button.btn.btn-sm.edit_cancel_btn {
+    border-radius: 2px;
+    background: #fff !important;
+    color: #171623 !important;
+    border: 1px solid #171623;
+  }
+  
+  button.btn.btn-sm.edit_cancel_btn:hover {
+    background: #f44336 !important;
+    color: #fff !important;
+    transition: 0.5s ease all;
+    border: 1px solid #f44336;
+  }
+  
+  button.btn-sm.btn.edit_save_btn:hover {
+    background: #5e29ff !important;
+    color: #fff !important;
+    transition: 0.5s ease all;
+    border: 1px solid #5e29ff;
+  }
+  .upload_img {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    /* border: 1px solid #ced4da;
+    box-shadow: 0 0 6px 0 #ddd; */
+    position: relative;
+  }
+  .upload_img > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  .upload_img input.form-control {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+  }
+  .upload_img .up_txt {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    opacity: 0.8;
+    z-index: 1;
+    cursor: pointer;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    padding: 12px 30px;
+    background-color: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    text-align: center;
+    font-size: 12px !important;
+    line-height: 12px;
+  }
+  
+  .hide_section {
+    background: transparent !important;
+  }
+  

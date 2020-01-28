@@ -1,0 +1,32 @@
+<div class="patient_appointments_table">
+  <table id="app_datatable" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Case</th>
+        <th>Date</th>
+        <th>time</th>
+        <th>Department</th>
+        <th>Doctor</th>
+        <th>Hospital</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of appointments; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.case }}</td>
+        <td>{{ item.date | date: "longDate" }}</td>
+        <td>{{ getTime(item.time) | date: "shortTime" }}</td>
+        <td>{{ item.department }}</td>
+        <td
+          [title]="item.doctor"
+          id="doc_prof"
+          (click)="doctor_profile(item.doctorId, item.hospitalId)"
+        >
+          {{ item.doctor }}
+        </td>
+        <td>{{ item.hospital }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

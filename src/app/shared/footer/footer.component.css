@@ -1,0 +1,14 @@
+.footer {
+    width: calc(100% + 40px);
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 20px -20px -15px;
+}
+  
+
+.footer p {
+    color: #000;
+    margin-top: 20px;
+    text-align: right;
+    padding: 0px 20px;
+}

@@ -1,0 +1,30 @@
+.media-left img{
+    width: 268px;
+    height: 240px;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: top center; 
+}
+.media-body h4{
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 500;
+    color: #6230fb;
+}
+.media-points p{
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 4px;
+	letter-spacing: 1px;
+}
+.media-points p span{
+	font-weight: 600;
+	color: #000;
+	min-width: 160px;
+	display: inline-block;
+	font-size: 112%;
+	letter-spacing: .5px;
+}
+.media-points p:last-child{
+	margin-bottom: 0;
+}

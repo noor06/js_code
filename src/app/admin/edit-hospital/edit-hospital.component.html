@@ -1,0 +1,487 @@
+<div class="bread_crumb">
+  <ol class="breadcrumb breadcrumb-arrow">
+    <li><a href="#" [routerLink]="['/admin/hospital']">Hospitals</a></li>
+    <li>{{ hospital && hospital.name }}</li>
+  </ol>
+</div>
+
+<ng-container *ngIf="hospital; else loader">
+  <section class="section_sep">
+    <div class="general_information">
+      <form [formGroup]="basic_info_form">
+        <div class="row">
+          <h5 class="col-md-6">General Information</h5>
+          <span
+            class="col-md-6 edit_span"
+            *ngIf="!basicEdit"
+            title="Edit basic information"
+          >
+            <i (click)="editClicked('basic')" class="fas fa-edit"> </i>
+          </span>
+          <div *ngIf="basicEdit" class="edit_btn_grp col-md-6">
+            <button
+              type="button"
+              (click)="saveBasicInfo()"
+              class="btn-sm btn edit_save_btn"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              (click)="cancelEdit('basic')"
+              class="btn btn-sm edit_cancel_btn"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="hospital">
+          <div class="form-group col-md-6">
+            <label>Name</label>
+            <input
+              *ngIf="!basicEdit"
+              class="form-control"
+              [value]="hospital.name"
+              readonly
+            />
+            <input
+              *ngIf="basicEdit"
+              type="text"
+              class="form-control"
+              formControlName="name"
+            />
+            <div
+              *ngIf="
+                basic_info_form.controls['name'].hasError('required') &&
+                basic_info_form.controls['name'].touched
+              "
+              class="text-danger"
+            >
+              Please enter name
+            </div>
+
+            <div
+              *ngIf="
+                basic_info_form.controls['name'].hasError('pattern') &&
+                basic_info_form.controls['name'].touched
+              "
+              class="text-danger"
+            >
+              Please enter valid name
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Pincode</label>
+            <input
+              *ngIf="!basicEdit"
+              class="form-control"
+              [value]="hospital.pincode"
+              readonly
+            />
+            <input
+              *ngIf="basicEdit"
+              type="text"
+              class="form-control"
+              formControlName="pincode"
+              minlength="5"
+              maxlength="5"
+            />
+            <div
+              *ngIf="
+                basic_info_form.controls['pincode'].hasError('required') &&
+                basic_info_form.controls['pincode'].touched
+              "
+              class="text-danger"
+            >
+              Please enter pincode
+            </div>
+
+            <div
+              *ngIf="
+                basic_info_form.controls['pincode'].hasError('pattern') &&
+                basic_info_form.controls['pincode'].touched
+              "
+              class="text-danger"
+            >
+              Please enter valid pincode
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Address</label>
+            <textarea
+              *ngIf="!basicEdit"
+              class="form-control"
+              [value]="hospital.address"
+              readonly
+            ></textarea>
+            <input
+              placeholder="Enter address"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="off"
+              type="text"
+              formControlName="address"
+              id="location_address"
+              [class]="basicEdit ? 'form-control' : 'none'"
+              #search
+            />
+            <div
+              *ngIf="
+                basic_info_form.controls['address'].hasError('required') &&
+                basic_info_form.controls['address'].touched
+              "
+              class="text-danger error_div"
+            >
+              Please enter address
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Landmark</label>
+            <textarea
+              *ngIf="!basicEdit"
+              class="form-control"
+              [value]="hospital.landmark"
+              readonly
+            ></textarea>
+            <input
+              *ngIf="basicEdit"
+              type="text"
+              class="form-control"
+              formControlName="landmark"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section_sep">
+    <div class="contacts_div">
+      <form [formGroup]="contact_info_form" *ngIf="hospital">
+        <div class="row">
+          <h5 class="col-md-6">Contacts</h5>
+          <span
+            *ngIf="!contactEdit"
+            class="edit_span col-md-6"
+            title="Edit contact information"
+          >
+            <i (click)="editClicked('contact')" class="fas fa-edit"> </i>
+          </span>
+
+          <div *ngIf="contactEdit" class="edit_btn_grp col-md-6">
+            <button
+              type="button"
+              (click)="saveContactInfo()"
+              class="btn-sm btn edit_save_btn"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              (click)="cancelEdit('contact')"
+              class="btn-sm btn edit_cancel_btn"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>E-mail</label>
+              <input
+                *ngIf="!contactEdit"
+                class="form-control"
+                [value]="hospital.email"
+                readonly
+              />
+              <input
+                *ngIf="contactEdit"
+                type="email"
+                id="email_input"
+                class="form-control"
+                formControlName="email"
+                placeholder="Enter email..."
+              />
+              <div
+                *ngIf="
+                  contact_info_form.controls['email'].hasError('required') &&
+                  contact_info_form.controls['email'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter email
+              </div>
+              <div
+                *ngIf="
+                  contact_info_form.controls['email'].hasError('pattern') &&
+                  contact_info_form.controls['email'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter valid email
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Phone</label>
+              <input
+                *ngIf="!contactEdit"
+                class="form-control"
+                [value]="hospital.phone"
+                readonly
+              />
+              <div *ngIf="contactEdit" class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone_number"
+                  formControlName="phone"
+                  placeholder="Enter phone number"
+                  maxlength="14"
+                  appPhoneMask
+                />
+                <div
+                  *ngIf="
+                    contact_info_form.controls['phone'].hasError('required') &&
+                    contact_info_form.controls['phone'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Please enter phone number
+                </div>
+                <div
+                  *ngIf="
+                    contact_info_form.controls['phone'].hasError('minlength') &&
+                    contact_info_form.controls['phone'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Enter valid number
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Emergency </label>
+              <input
+                *ngIf="!contactEdit"
+                class="form-control"
+                [value]="hospital.emergency_number"
+                readonly
+              />
+              <div *ngIf="contactEdit" class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone_number"
+                  formControlName="emergency_number"
+                  placeholder="Enter emergency number"
+                  maxlength="14"
+                  appPhoneMask
+                />
+                <div
+                  *ngIf="
+                    contact_info_form.controls['emergency_number'].hasError(
+                      'required'
+                    ) && contact_info_form.controls['emergency_number'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Please enter emergency number
+                </div>
+                <div
+                  *ngIf="
+                    contact_info_form.controls['emergency_number'].hasError(
+                      'minlength'
+                    ) && contact_info_form.controls['emergency_number'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Enter valid number
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Appointment</label>
+              <input
+                *ngIf="!contactEdit"
+                class="form-control"
+                [value]="hospital.appointment_number"
+                readonly
+              />
+              <div *ngIf="contactEdit" class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone_number"
+                  formControlName="appointment_number"
+                  placeholder="Enter appointment number"
+                  maxlength="14"
+                  appPhoneMask
+                />
+                <div
+                  *ngIf="
+                    contact_info_form.controls['appointment_number'].hasError(
+                      'required'
+                    ) &&
+                    contact_info_form.controls['appointment_number'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Please enter appointment number
+                </div>
+                <div
+                  *ngIf="
+                    contact_info_form.controls['appointment_number'].hasError(
+                      'minlength'
+                    ) &&
+                    contact_info_form.controls['appointment_number'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Enter valid number
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>Fax</label>
+              <input
+                *ngIf="!contactEdit"
+                class="form-control"
+                [value]="hospital.fax"
+                readonly
+              />
+              <div *ngIf="contactEdit" class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone_number"
+                  formControlName="fax"
+                  placeholder="Enter fax number"
+                  maxlength="14"
+                  appPhoneMask
+                />
+                <div
+                  *ngIf="
+                    contact_info_form.controls['fax'].hasError('minlength') &&
+                    contact_info_form.controls['fax'].touched
+                  "
+                  class="text-danger error_div"
+                >
+                  Enter valid number
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section_sep">
+    <div class="timing_info" *ngIf="hospital">
+      <div class="row">
+        <h5 class="col-md-6">Timings</h5>
+
+        <span
+          *ngIf="!timingEdit"
+          class="edit_span col-md-6"
+          title="Edit timing information"
+        >
+          <i (click)="editClicked('timing')" class="fas fa-edit"> </i>
+        </span>
+
+        <div *ngIf="timingEdit" class="col-md-6 edit_btn_grp">
+          <button
+            [disabled]="!timing_info_form.valid"
+            type="button"
+            (click)="saveTimingInfo()"
+            class="btn btn-sm edit_save_btn"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            (click)="cancelEdit('timing')"
+            class="btn btn-sm edit_cancel_btn"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <form [formGroup]="timing_info_form">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label> Start </label>
+            <input
+              *ngIf="!timingEdit"
+              type="time"
+              class="form-control"
+              [value]="hospital.timing_from"
+              readonly
+            />
+            <ng-container *ngIf="timingEdit">
+              <input
+                id="to_time"
+                type="time"
+                class="form-control edit_time"
+                atp-time-picker
+                readonly
+                placeholder="from"
+                formControlName="start"
+                (click)="open()"
+              />
+              <i class="fa fa-clock"></i>
+            </ng-container>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label> End </label>
+            <input
+              *ngIf="!timingEdit"
+              type="time"
+              class="form-control"
+              [value]="hospital.timing_to"
+              readonly
+            />
+            <ng-container *ngIf="timingEdit">
+              <input
+                id="to_time"
+                type="time"
+                class="form-control edit_time"
+                atp-time-picker
+                readonly
+                placeholder="to"
+                formControlName="end"
+                (click)="open()"
+              />
+              <i class="fa fa-clock"></i>
+            </ng-container>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</ng-container>
+
+<ng-template #loader>
+  <div class="loader">
+    <img src="assets/images/three-bar-loader.gif" alt="" />
+  </div>
+</ng-template>

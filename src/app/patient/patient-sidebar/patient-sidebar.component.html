@@ -1,0 +1,51 @@
+<div class="sidenav">
+  <div class="sidebar_logo">
+    <img class="w3-animate-zoom" src="assets/images/logo.png" alt="logo" />
+  </div>
+  <div class="sidebar_options">
+    <ul>
+      <li>
+        <a
+          routerLinkActive="active"
+          [routerLink]="['/patient/hospital']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-hospital"></i>
+          <span>Hospitals</span>
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="active"
+          [routerLink]="['/patient/appointment']"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-clock"></i>
+          <span>Appointments</span>
+        </a>
+      </li>
+      <li>
+        <a
+          *ngIf="patient"
+          routerLinkActive="active"
+          [routerLink]="['/patient/profile', patient.id]"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fa fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li>
+        <a
+          *ngIf="patient"
+          routerLinkActive="active"
+          [routerLink]="['/patient/account', patient.id]"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <i class="fas fa-cog"></i>
+          <span>Account</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

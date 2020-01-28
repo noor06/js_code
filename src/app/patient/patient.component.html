@@ -1,0 +1,22 @@
+<app-patient-navbar></app-patient-navbar>
+<app-patient-sidebar></app-patient-sidebar>
+
+<div class="main_content">
+  <div class="main_content_inner">
+    <ng-container *ngIf="breadcrumb.length > 0">
+      <ul class="breadcrumb">
+        <li *ngFor="let item of breadcrumb">
+          <a
+            [routerLink]="item.link"
+            routerLinkActive="bread-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

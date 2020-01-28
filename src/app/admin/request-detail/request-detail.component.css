@@ -1,0 +1,27 @@
+span.pull-right {
+  font-size: 24px;
+  cursor: pointer;
+  filter: brightness(5.5);
+}
+
+span.pull-right:hover {
+  filter: none;
+}
+.modal-footer {
+  background: #dadada;
+  justify-content: center;
+}
+.header {
+  font-family: montserrat;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.status_span {
+  justify-content: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: montserrat;
+  font-weight: 600;
+}
+
+/*****************5 Nov*************/

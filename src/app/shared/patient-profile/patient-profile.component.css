@@ -1,0 +1,199 @@
+/* .profile_data span {
+  display: block;
+}
+
+.profile_data h3 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: montserrat;
+} */
+
+/************21oct***********/
+
+
+/* .profile_data h3 {
+    font-size: 22px;
+    text-transform: capitalize !important;
+    line-height: 28px;
+}
+
+.profile_card{
+    max-width: 620px !important;
+    margin: 20px auto 30px !important;
+    box-shadow: 0px 6px 16px 3px #b3acca5e;
+    padding: 23px;
+    background-color: #dcd3fa;
+    border: 1px solid #c0b7df;
+}
+.profile_pic {
+    width: 250px;
+    margin: 0px !important;
+}
+.profile_pic img {
+   background-color: #fff;
+    border-radius: 100% !important;
+    max-width: 200px;
+    height: 200px;
+}
+.other_info span {
+    font-weight: 500;
+    line-height: 25px;
+    font-size: 14px;
+}
+.other_info i.fas {
+    font-size: 16px;
+    margin-right: 8px;
+    color: #9681db;
+}
+i.fas.fa-male {
+    margin-left: 7px;
+} */
+
+
+/***********22oct****************/
+
+.lower_layer {
+   width: 100%;
+    background: #ece6ff;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -45px;
+}
+.upper_layer {
+    display: flex;
+}
+.upper_layer img {
+    width: 175px;
+    height: 175px;
+    background-color: #ece6ff47;
+    border-radius: 100%;
+    border: 3px solid #ece6ff;
+    padding: 0px;
+   } 
+.lower_layer i.fas {
+    margin-right: 10px;
+    color: #b3a2ec;
+    font-size: 16px;
+}
+.patient_name h3 {
+    margin-bottom: 0px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.lower_layer span {
+    display: block;
+    padding-left: 25%;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.patient_name::after, .blood_group::after  {
+    position: absolute;
+    width: 3px;
+    height: 30px;
+    content: "";
+    background: #c4d5e3;
+    right: -35px;
+    top: 1px;
+}
+.right_upper_layer {
+    display: flex;
+    width: 65%;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-top: 40px;
+}
+.blood_group span, .age span {
+    font-weight: 400;
+    font-size: 18px;
+    color: #a6a6a6;
+    position: relative;
+}
+.patient_name, .blood_group {
+    position: relative;
+}
+.profile_card {
+    margin-bottom: 30px;
+}
+h4.appointments_clas {
+    position: relative;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+}
+
+h4.appointments_clas::after {
+    content: "";
+    position: absolute;
+    background-color: #80216b;
+    width: 70px;
+    height: 3px;
+    bottom: 4px;
+    left: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+.blood_group span, .age span {
+    font-weight: 400;
+    font-size: 18px;
+    color: #a6a6a6;
+    position: relative;
+    left: 50%;
+}
+.lower_layer{
+    margin-top: -30px;
+    padding-bottom: 15px;
+}
+}
+
+
+@media only screen and (max-width: 767px) {
+
+.right_upper_layer{
+    width: 100%;
+    padding-top: 0px;
+}
+
+.upper_layer{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.lower_layer span{
+    padding-left: 0px !important;
+}
+
+.lower_layer{
+    padding: 50px 20px 20px 20px;
+}
+
+    }
+
+@media only screen and (max-width: 414px) {
+
+.patient_name h3{
+    margin-bottom: 0px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.lower_layer span {
+    font-size: 12.5px;
+}
+.patient_name::after, .blood_group::after {
+    position: absolute;
+    width: 2px;
+    height: 22px;
+    content: "";
+    background: #c4d5e3;
+    right: -15px;
+    top: 1px;
+}
+.blood_group span, .age span{
+    font-size: 12px;
+    left: 35%;
+}
+}

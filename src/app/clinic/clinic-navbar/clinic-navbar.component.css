@@ -1,0 +1,37 @@
+span.nav-heading {
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #ab8f8f;
+  font-family: Montserrat;
+}
+
+.fa-bell {
+  font-size: 28px;
+  color: #9393a5;
+}
+i.fas.fa-bell:hover {
+  color: #762366;
+  cursor: pointer;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #007bff;
+  position: absolute;
+  top: -4px;
+  position: absolute;
+  right: -5px;
+  font-size: 10px;
+  border-radius: 15px;
+  padding: 4px 6px;
+}
+li.update_bell {
+  position: relative;
+}
+
+@media (max-width: 420px) {
+  span.nav-heading {
+    font-size: 16px;
+  }
+}

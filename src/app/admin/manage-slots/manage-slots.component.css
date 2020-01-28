@@ -1,0 +1,165 @@
+.add_slot_form {
+  padding: 40px 30px;
+}
+
+button.btn.btn-success {
+  background: #fff;
+  color: #999;
+  border: 0;
+  margin: -60px 0 0 400px;
+}
+
+.select_hospital_div,
+.select_doctor_div {
+  margin-bottom: 20px;
+}
+
+input#slot_date {
+    background: #fff !important;
+    border: 1px solid #dec2c2 !important;
+}
+
+i.fas.fa-sync-alt {
+  margin: 6px 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  color: #da5f5f;
+}
+
+i.fas.fa-sync-alt:hover {
+  color: #4a3939;
+}
+
+span.badge {
+  font-weight: 500;
+  padding: 5px;
+  font-size: 12px;
+  width: 80px;
+}
+
+.closed {
+  background: #f3e7e7;
+}
+tr.closed > td {
+  color: #b3b3b3;
+}
+
+select.select_hospital.form-control,
+select.select_doctor.form-control {
+  border: 0;
+  background: #f7e6e6;
+  box-shadow: none;
+}
+
+.update_btn {
+  margin: 0 10px;
+}
+
+.deactivate {
+  background: #d9534f;
+}
+
+.on {
+  background: #ffeded;
+}
+
+.off {
+  background: #f9fbfb;
+}
+
+button.btn.btn-sm.delete_btn {
+  border: 1px solid #483f79;
+  background: transparent;
+}
+
+button.btn.btn-sm.delete_btn span {
+  color: #483f79;
+  font-weight: 600;
+}
+
+button.btn.btn-sm.delete_btn:hover {
+  background: #483f79;
+  transition: 1s;
+}
+
+button.btn.btn-sm.delete_btn:hover > span {
+  color: #fff;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  /* height: 20px;
+  width: 70px; */
+}
+
+button.btn.btn-sm.batch_opr_btn {
+  background: #fff;
+  border: 1px solid #231154;
+  color: #231154 !important;
+}
+
+.disable_checkbox {
+  cursor: no-drop !important;
+}
+
+button.btn.btn-sm.batch_opr_btn:hover {
+  background: #231154;
+  color: #fff !important;
+}
+
+.btn-group.batch {
+  float: right;
+}
+
+ul#dropdown-basic {
+  left: -100px !important;
+}
+.dropdown-menu.show {
+  top: 0;
+  left: -100px;
+}
+ul#dropdown-basic > li,
+.dropdown-menu.show > li {
+  cursor: pointer;
+}
+.selection_divs {
+  margin-bottom: 30px;
+}
+
+.selection_divs label {
+  font-weight: 600;
+  color: #9393a5;
+}
+
+input#slot_date {
+  position: relative;
+  background-color: #f7e5e6;
+  opacity: 1;
+  border: 0;
+  box-shadow: none;
+}
+
+i.fa.fa-calendar {
+  position: absolute;
+  top: 32px;
+  right: 25px;
+}
+
+.loader {
+  text-align: center;
+}
+
+.loader img {
+  max-width: 20%;
+  padding-top: 100px;
+}
+
+button#button-container {
+  color: #483f79 !important;
+  font-weight: 600;
+}
+
+button#button-container:hover {
+  color: #fff !important;
+  background: #483f79 !important;
+}

@@ -1,0 +1,70 @@
+<!-- <button type="button" (click)="push()">CHECK PUSH</button> -->
+<ng-container *ngIf="loading">
+  <div class="loader-div">
+    <img src="assets/images/three-bar-loader.gif" />
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading">
+  <div *ngIf="hospitals" class="hospitals_table_div">
+    <table id="hospitals" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone number</th>
+          <th>Appointment number</th>
+          <th>Address</th>
+          <th>Timing</th>
+          <th class="no-sort">Operations</th>
+          <th style="display: none;">Specialities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of hospitals; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.h_id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.appointment_number }}</td>
+          <td>{{ item.phone }}</td>
+          <td>
+            {{ item.address }}
+          </td>
+          <td>
+            {{ getTime(item.timing_from) | date: "shortTime" }} -
+            {{ getTime(item.timing_to) | date: "shortTime" }}
+          </td>
+          <td>
+            <a
+              role="button"
+              class="btn btn-sm"
+              [routerLink]="['/admin/hospital', item.id]"
+            >
+              <i class="fas fa-edit"></i>
+            </a>
+
+            <a
+              role="button"
+              class="btn btn-sm dlt_hsp"
+              (click)="delete(item.id)"
+            >
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+          <td style="display: none;">{{ item.specialities }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      class="add_hospital_btn btn add_btn"
+      type="button"
+      (click)="add_hospital_navigation()"
+    >
+      Add hospital
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div class="panel panel-bd cardbox" (click)="navigate_heading('hospital')">
+      <div class="panel-body">
+        <div class="statistic-box">
+          <h2>
+            <span class="count-number">{{ hospital_count }}</span>
+          </h2>
+        </div>
+        <div class="items pull-left">
+          <i class="fas fa-clinic-medical"></i>
+          <h4>Hospitals</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div class="panel panel-bd cardbox" (click)="navigate_heading('doctor')">
+      <div class="panel-body">
+        <div class="statistic-box">
+          <h2>
+            <span class="count-number"> {{ doctor_count }} </span>
+          </h2>
+        </div>
+        <div class="items pull-left">
+          <i class="fas fa-user-md"></i>
+          <h4>Active Doctors</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div class="panel panel-bd cardbox" (click)="navigate_heading('patient')">
+      <div class="panel-body">
+        <div class="statistic-box">
+          <h2>
+            <span class="count-number">{{ patient_count }}</span>
+          </h2>
+        </div>
+        <div class="items pull-left">
+          <i class="fas fa-procedures"></i>
+          <h4>Total Users</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div
+      class="panel panel-bd cardbox"
+      (click)="navigate_heading('appointment')"
+    >
+      <div class="panel-body">
+        <div class="statistic-box">
+          <h2>
+            <span class="count-number">{{ active_count }}</span>
+          </h2>
+        </div>
+        <div class="items pull-left">
+          <i class="fas fa-calendar-alt"></i>
+          <h4>Active Appointments</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div
+      class="panel panel-bd cardbox"
+      (click)="navigate_heading('appointment')"
+    >
+      <div class="panel-body">
+        <div class="statistic-box">
+          <h2>
+            <span class="count-number">{{ completed_count }}</span>
+          </h2>
+        </div>
+        <div class="items pull-left">
+          <i class="fas fa-calendar-alt"></i>
+          <h4>Completed Appointments</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+    <div
+      class="panel panel-bd cardbox"
+      (click)="navigate_heading('appointment')"
+    >
+      <div class="panel-body">
+        <div class="statistic-box">
+          <h2>
+            <span class="count-number">{{ cancelled_count }}</span>
+          </h2>
+        </div>
+        <div class="items pull-left">
+          <i class="fas fa-calendar-alt"></i>
+          <h4>Cancelled Appointments</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PIE chart -->
+
+<!-- <div class="row"> -->
+<div class="chart" *ngIf="!pie_loading">
+  <div class="pie_chart_section">
+    <h3 class="header_chart">
+      appointments pie chart
+    </h3>
+    <canvas
+      width="500"
+      baseChart
+      [data]="pieChartData"
+      [labels]="pieChartLabels"
+      [chartType]="pieChartType"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins"
+      [colors]="pieChartColors"
+      [legend]="pieChartLegend"
+    >
+    </canvas>
+  </div>
+</div>
+
+<div class="chart" *ngIf="!bar_loading">
+  <div class="bar_chart_section">
+    <h3 class="header_chart">
+      appointments bar chart
+    </h3>
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+</div>
+<!-- </div> -->

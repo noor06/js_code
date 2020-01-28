@@ -1,0 +1,110 @@
+<!-- {{ hospital | json }} -->
+<!-- {{ doctors | json }} -->
+<ng-container *ngIf="hospital">
+  <div class="card hospital_card px-3 pt-4 mb-lg-4 mb-3">
+    <div class="row ">
+      <div class="col-12 col-md-6 d-flex align-items-center">
+        <div class="card-description">
+          <h2>{{ hospital.name }}</h2>
+          <a href="tel:{{ hospital.emergency_number }}" class="btn btn-primary"
+            ><i class="fa fa-ambulance " aria-hidden="true"></i
+            ><span><em>Emergency Call</em>{{ hospital.emergency_number }}</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <img
+          [src]="hospital.image || 'assets/images/hospital_placeholder.png'"
+          [alt]="hospital.name"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="w-100">
+    <h3 class="sub_heading">About this hospital</h3>
+    <pre>{{ hospital.overview }}</pre>
+  </div>
+
+  <hr class="my-4" />
+  <div class="cards_list w-100 pt-2">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="sub_heading">Doctors</h3>
+      </div>
+
+      <ng-container *ngIf="doctors.length > 0; else no_data">
+        <div *ngFor="let item of doctors" class="col-12 col-sm-6 col-md-4 mb-3">
+          <div (click)="profile(item.id)" class="card card-profile">
+            <div class="card-image">
+              <img
+                class="img"
+                [src]="
+                  item.profile_pic
+                    ? item.profile_pic
+                    : 'https://image.freepik.com/free-vector/doctor-icon_23-2147504929.jpg'
+                "
+              />
+            </div>
+            <div class="table">
+              <h5 class="card-caption doc_name">{{ item.name }}</h5>
+              <h6 class="category">{{ item.designation }}</h6>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #no_data>
+        <!-- <img src="assets/images/doctor_placeholder.jpeg" /> -->
+        <h4 class="no-record">No record found</h4>
+      </ng-template>
+    </div>
+  </div>
+  <hr class="my-4" />
+  <div class="container-fluid contact_block w-100">
+    <div class="row text-center">
+      <div class="col-12">
+        <h3 class="sub_heading sub_heading_center">Contact Us</h3>
+      </div>
+      <div class="col-12 col-md-4 mb-3">
+        <div class="cont_desc">
+          <h4 class="icon_circle"><i class="fas fa-phone-volume"></i></h4>
+          <h4>Call</h4>
+          <p>
+            <span>{{ hospital.phone }}</span>
+          </p>
+          <p>
+            <span>{{ hospital.email }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mb-3 box_border">
+        <div class="cont_desc">
+          <h4 class="icon_circle">
+            <i class="fa fa-fax" aria-hidden="true"></i>
+          </h4>
+          <h4>Fax</h4>
+          <p>
+            <span>{{ hospital.fax }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mb-3">
+        <div class="cont_desc">
+          <h4 class="icon_circle">
+            <i class="fa fa-clock" aria-hidden="true"></i>
+          </h4>
+          <h4>Appointment</h4>
+          <p>
+            <span>{{ hospital.appointment_number }}</span>
+          </p>
+          <p>
+            <span
+              >{{ getTime(hospital.timing_from) | date: "shortTime" }} to
+              {{ getTime(hospital.timing_to) | date: "shortTime" }}</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

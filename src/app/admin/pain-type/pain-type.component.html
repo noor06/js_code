@@ -1,0 +1,98 @@
+<!-- <ng-container>
+  <section class="section_sep">
+    <div class="hospital_doctor_list_div">
+      <h4 class="manage_doc_h">Pain Type</h4>
+
+      <table id="pains" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>dfdfgg</td>
+            <td>dfdfgg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="add_hospital_button_div">
+      <button
+        type="button"
+        class="btn add_btn"
+        (click)="add_pain_navigation()"
+      >
+        Add
+      </button>
+    </div>
+  </section>
+</ng-container> -->
+
+<!-- <button type="button" (click)="push()">CHECK PUSH</button> -->
+<ng-container *ngIf="loading">
+  <div class="loader-div">
+    <img src="assets/images/three-bar-loader.gif" />
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading">
+  <div *ngIf="pains" class="hospitals_table_div">
+    <table id="pains" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pains; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.pain_type }}</td>
+         <td>
+            <img
+            (click)="open(i)"
+            class="profile_pic"
+            [src]="
+              item.img || 'assets/images/doctor_placeholder.jpeg'
+            "
+            [alt]="item.img"
+          />
+        
+      </td>
+
+          <td>
+            <a
+              role="button"
+              class="btn btn-sm"
+              [routerLink]="['/admin/pain', item.id]"
+            >
+              <i class="fas fa-edit"></i>
+            </a>
+
+            <a
+              role="button"
+              class="btn btn-sm dlt_hsp"
+              (click)="delete(item.id)"
+            >
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+          <td style="display: none;"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      class="add_hospital_btn btn add_btn"
+      type="button"
+      (click)="add_pain_navigation()"
+    >
+      Add Type
+    </button>
+  </div>
+</ng-container>

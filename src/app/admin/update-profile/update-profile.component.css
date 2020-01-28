@@ -1,0 +1,32 @@
+h5 {
+  margin: 10px 0 60px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Montserrat;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  color: #779a7c;
+}
+
+.update_password_form.card {
+  margin: 50px 25% 0;
+  padding: 30px 30px;
+  box-shadow: 10px 10px 16px grey;
+}
+
+button.btn.update_password_btn {
+  float: right;
+  margin: 20px 0 0;
+}
+
+@media (max-width: 680px) {
+  .update_password_form.card {
+    margin: 0;
+    padding: 30px 30px;
+    box-shadow: 0;
+  }
+}

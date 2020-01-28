@@ -1,0 +1,16 @@
+.appointment_modal_div {
+  padding: 30px;
+}
+.appointment_modal_div form select{
+	width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+.appointment_modal_div form .fa-calendar-alt, .appointment_modal_div form .fa-clock{
+	float: right;
+    top: -25px;
+    right: 5px;
+    position: relative;
+}

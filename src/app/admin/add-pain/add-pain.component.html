@@ -1,0 +1,111 @@
+<div class="bread_crumb">
+  <ol class="breadcrumb breadcrumb-arrow">
+    <li><a href="#" [routerLink]="['/admin/pain-type']">Pain Type</a></li>
+    <li>Add Pain Type</li>
+  </ol>
+</div>
+<div class="add_doctor_form">
+  <!-- <h3 class="sec_title">Add <span class="c_purple">Hospital</span></h3> -->
+  <form
+    [formGroup]="pain_form"
+    autocomplete="off"
+    (submit)="add_pain()"
+  >
+    <section class="section_sep">
+      <div class="general_info_div">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Pain Type:</label>
+              <input
+                type="text"
+                minlength="3"
+                maxlength="60"
+                class="form-control"
+                placeholder="Enter Pain Type"
+                formControlName="name"
+              />
+              <div
+                *ngIf="
+                pain_form.controls['name'].hasError('required') &&
+                pain_form.controls['name'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter Type
+              </div>
+              <div
+                *ngIf="
+                pain_form.controls['name'].hasError('pattern') &&
+                pain_form.controls['name'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter valid Type
+              </div>
+            </div>
+          </div>
+          
+        
+        </div>
+      </div>
+    </section>
+    <section class="section_sep">
+      <h5>Upload picture</h5>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="upload_img" for="upload_img">
+            <img
+              [src]="selected_image || 'assets/images/hospital_placeholder.jpg'"
+            />
+
+            <span class="up_txt">Upload Picture </span>
+            <input
+              type="file"
+              class="form-control"
+              id="upload_img"
+              (change)="upload($event)"
+              accept="image/*"
+              formControlName="image"
+            />
+            
+          </label>
+          <div
+            *ngIf="
+            pain_form.controls['image'].hasError('required') &&
+            pain_form.controls['image'].touched
+            "
+            class="text-danger error_div"
+          >
+            Please Select Image
+          </div>
+          <div
+            *ngIf="
+            pain_form.controls['image'].hasError('pattern') &&
+            pain_form.controls['image'].touched
+            "
+            class="text-danger error_div"
+          >
+          Please Select Image
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section class="section_sep">
+      <div class="mt-3 d-flex justify-content-end">
+        <button type="button" class="btn back_btn cancel_btn" (click)="back()">
+          Cancel
+        </button>
+        <button type="submit" class="btn submit_btn">
+          <span *ngIf="!loading">Add</span>
+          <span *ngIf="loading">Processing...</span>
+        </button>
+      </div>
+    </section>
+  </form>
+</div>

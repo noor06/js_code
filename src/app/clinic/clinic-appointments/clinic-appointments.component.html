@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label>Select Doctor:</label>
+      <select
+        (change)="select_doctor($event)"
+        [(ngModel)]="doctorId"
+        name="select_doctor"
+        id="select_doctor"
+        class="form-control"
+      >
+        <ng-container *ngIf="doctors && doctors.length > 0; else no_doctor">
+          <option value="" selected disabled>Select doctor...</option>
+          <option *ngFor="let item of doctors" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </ng-container>
+
+        <ng-template #no_doctor>
+          <option value="" selected disabled>
+            No doctor available or no hospital is selected...
+          </option>
+        </ng-template>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="app_flag && !loading" class="app_data">
+  <table id="appointment_datatable" class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="no-sort">Appointment Number</th>
+        <th class="no-sort">Patient</th>
+        <th class="no-sort">Doctor</th>
+        <th>Date</th>
+        <th class="no-sort">Day</th>
+        <th class="no-sort">Slot timings</th>
+        <th class="no-sort">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of appointments; let i = index">
+        <td>{{ item.appointment_number }}</td>
+        <td>{{ item.patient_name }}</td>
+        <td>{{ getDoctor(item.doctorId) }}</td>
+        <td>{{ item.slot.date | date: "longDate" }}</td>
+        <td>{{ getDay(item.slot.date) }}</td>
+        <td>{{ getTime(item.slot.from) }} - {{ getTime(item.slot.to) }}</td>
+        <td>
+          <span *ngIf="item.status === '1'">Active</span>
+          <span *ngIf="item.status === '0'">Cancelled</span>
+          <span *ngIf="item.status === '2'">Completed</span>
+          <span *ngIf="item.status === '3'">Rescheduled</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

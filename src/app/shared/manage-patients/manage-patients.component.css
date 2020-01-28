@@ -1,0 +1,19 @@
+img.profile_pic {
+  height: 50px;
+  width: auto;
+}
+
+i.fas.fa-trash,
+i.fas.fa-eye {
+  font-size: 20px;
+  margin: 0 10px;
+  color: #ad8e8e;
+}
+
+i.fas.fa-eye {
+  color: #484884 !important;
+}
+
+i.fas.fa-trash {
+  color: #da4a4a !important;
+}

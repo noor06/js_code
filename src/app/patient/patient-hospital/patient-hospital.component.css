@@ -1,0 +1,271 @@
+.sub_heading {
+  margin: 0 0 1.5rem;
+  padding-bottom: 5px;
+  font-weight: 500;
+  font-size: 28px;
+  position: relative;
+  text-align: left;
+}
+.sub_heading:after {
+  position: absolute;
+  content: "";
+  width: 62px;
+  height: 2px;
+  left: 2px;
+  bottom: 0;
+  border-radius: 0 10px 10px 0;
+  background: #5e29ff;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(1%, #5e29ff),
+    to(#7651e6)
+  );
+  background: linear-gradient(to right, #5e29ff 1%, #7651e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e29ff', endColorstr='#7651e6',GradientType=1 );
+}
+.hospital_card {
+  border: none;
+  background: rgba(228, 232, 241, 1);
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(228, 232, 241, 1) 0%,
+    rgba(203, 212, 229, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right bottom,
+    color-stop(0%, rgba(228, 232, 241, 1)),
+    color-stop(100%, rgba(203, 212, 229, 1))
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(228, 232, 241, 1) 0%,
+    rgba(203, 212, 229, 1) 100%
+  );
+  background: -o-linear-gradient(
+    -45deg,
+    rgba(228, 232, 241, 1) 0%,
+    rgba(203, 212, 229, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    -45deg,
+    rgba(228, 232, 241, 1) 0%,
+    rgba(203, 212, 229, 1) 100%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(228, 232, 241, 1) 0%,
+    rgba(203, 212, 229, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4e8f1', endColorstr='#cbd4e5', GradientType=1 );
+}
+.hospital_card .card-description {
+  max-width: 90%;
+}
+.hospital_card h2 {
+  color: #6230fb;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0 0 14px;
+  color: #275a73;
+}
+.hospital_card .btn {
+  padding: 14px 20px 15px 40px;
+  max-width: 250px;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.hospital_card .btn .fa {
+  margin-right: 18px;
+  font-size: 28px;
+  line-height: 36px;
+}
+.hospital_card .btn span {
+  font-weight: 700;
+}
+.hospital_card .btn em {
+  width: 100%;
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+}
+.hospital_card .card-image img {
+  width: 100%;
+  max-height: 220px;
+}
+.sp_list .sp_lst_name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 74px;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #6230fb;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 4px 4px 0 0 rgb(95, 43, 254);
+  -webkit-transition: ease all 0.5s;
+  transition: ease all 0.5s;
+}
+.sp_list .sp_lst_name:hover {
+  color: #fff;
+  background: #5e29ff;
+  background: -moz-linear-gradient(left, #5e29ff 1%, #7651e6 100%);
+  background: -webkit-linear-gradient(left, #5e29ff 1%, #7651e6 100%);
+  background: linear-gradient(to right, #5e29ff 1%, #7651e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e29ff', endColorstr='#7651e6',GradientType=1 );
+  -webkit-transition: ease all 0.5s;
+  transition: ease all 0.5s;
+}
+.cards_list .card {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.cards_list .card-profile {
+  /* margin-top: 30px; */
+  text-align: left;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: unset;
+  -webkit-box-direction: unset;
+  -ms-flex-direction: unset;
+  flex-direction: unset;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.cards_list .card-image {
+  height: 100px;
+  width: 150px;
+  /* padding: 10px; */
+  background: #ebf3fa;
+  position: relative;
+}
+
+pre {
+  display: block;
+  font-family: Roboto !important;
+  background: #f9f9f9;
+  padding: 10px;
+  width: 100% !important;
+  white-space: pre-wrap;
+  color: #8e8e8e;
+  font-size: 14px;
+}
+
+.cards_list .card-image a {
+  display: block;
+}
+.cards_list .card-image img {
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+}
+.cards_list .card-image .card-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  color: #fff;
+  font-size: 1.3em;
+  text-shadow: 0 2px 5px rgb(0, 0, 0);
+  font-weight: 700;
+}
+.cards_list .table {
+  margin-bottom: 0px;
+  padding: 15px;
+}
+.doc_name {
+  font-family: montserrat;
+  font-weight: 600;
+}
+.cards_list .category {
+  position: relative;
+  line-height: 0;
+  margin: 15px 0;
+  color: #a09191;
+  font-size: 1rem;
+}
+.cards_list p {
+  color: #3c4857;
+}
+
+.cont_desc h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 600;
+  color: #6230fb;
+}
+.cont_desc p {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #3c4857;
+}
+.cont_desc p span,
+.cont_desc p a {
+  font-weight: 400;
+  opacity: 0.89;
+  font-size: 94%;
+}
+.cont_desc p a:hover {
+  text-decoration: underline;
+  text-decoration-color: #3c4857;
+}
+.no-record {
+  margin: 0.2rem auto 1rem;
+  padding: 0.624rem 0.54rem;
+  width: auto;
+  max-width: calc(100% - 2rem);
+  border-bottom: 1px solid #ddd;
+}
+.icon_circle {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto !important;
+}
+.box_border {
+  border-right: 1px solid #eef4fc;
+  border-left: 1px solid #eef4fc;
+}
+.sub_heading_center:after {
+  left: 0;
+  right: 0;
+  
+}

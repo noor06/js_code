@@ -1,0 +1,147 @@
+<div class="add_slot_form">
+  <div class="doctor_profile row">
+    <div class="profile_pic_slot col-md-3">
+      <img [src]="selected_doctor.profile_pic_img" />
+    </div>
+    <div class="doctor_profile_brief col-md-9">
+      <div>
+        <!-- <label for=""> Doctor's name: </label> -->
+        <h3>Dr. {{ selected_doctor.name }}</h3>
+      </div>
+
+      <div>
+        <!-- <label for="">Timing shift: </label> -->
+        <label>
+          Timing: {{ getTime(selected_doctor.start_time) }} -
+          {{ getTime(selected_doctor.end_time) }}
+        </label>
+        <small style="color: red">
+          (Slot interval must be in between doctor's time shift)
+        </small>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="slot_form" autocomplete="off" (submit)="add_slot()">
+    <div class="form-group calendar_div">
+      <label for="slot_date">
+        Date:
+      </label>
+      <input
+        type="text"
+        id="slot_date"
+        class="form-control"
+        #dp="bsDatepicker"
+        bsDatepicker
+        readonly
+        [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY' }"
+        [minDate]="minDate"
+        [daysDisabled]="disabled_days"
+        placeholder="Enter slot date..."
+        formControlName="date"
+      />
+      <i class="fa fa-calendar"></i>
+      <div
+        *ngIf="
+          slot_form.controls['date'].hasError('required') &&
+          slot_form.controls['date'].touched
+        "
+        class="text-danger"
+      >
+        Please select date
+      </div>
+    </div>
+
+    <div class="time_div_group">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group clock_input">
+            <label for="start_time_time">Start time:</label>
+            <input
+              id="start_time_time"
+              class="form-control"
+              atp-time-picker
+              type="time"
+              readonly
+              placeholder="Start time"
+              formControlName="start_time"
+              (click)="open()"
+            />
+            <i class="fa fa-clock"></i>
+            <div
+              *ngIf="
+                slot_form.controls['start_time'].hasError('required') &&
+                slot_form.controls['start_time'].end_timeuched
+              "
+              class="text-danger"
+            >
+              Please select start time
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group clock_input">
+            <label for="end_time_time">End time:</label>
+            <input
+              id="end_time_time"
+              class="form-control"
+              atp-time-picker
+              readonly
+              type="time"
+              placeholder="End time"
+              formControlName="end_time"
+              (click)="open()"
+            />
+            <i class="fa fa-clock"></i>
+            <div
+              *ngIf="
+                slot_form.controls['end_time'].hasError('required') &&
+                slot_form.controls['end_time'].touched
+              "
+              class="text-danger"
+            >
+              Please select end time
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>time per patient:</label>
+      <select name="" formControlName="interval" id="" class="form-control">
+        <option value="" selected disabled>Time per patient</option>
+        <option value="5">5 minutes</option>
+        <option value="10">10 minutes</option>
+        <option value="15">15 minutes</option>
+        <option value="20">20 minutes</option>
+        <option value="25">25 minutes</option>
+        <option value="30">30 minutes</option>
+      </select>
+    </div>
+
+    <div class="btn-grp">
+      <button
+        *ngIf="!loading"
+        type="button"
+        (click)="modalRef.hide()"
+        class="btn cancel_btn"
+      >
+        Cancel
+      </button>
+
+      <button
+        [disabled]="!slot_form.valid"
+        [class]="
+          !slot_form.valid
+            ? 'add_slot_btn btn disabled_btn'
+            : 'add_slot_btn btn'
+        "
+        type="submit"
+      >
+        <span *ngIf="!loading">Add slot</span>
+        <span *ngIf="loading">Adding ...</span>
+      </button>
+    </div>
+  </form>
+</div>

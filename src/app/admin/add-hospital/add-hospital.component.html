@@ -1,0 +1,478 @@
+<div class="bread_crumb">
+  <ol class="breadcrumb breadcrumb-arrow">
+    <li><a href="#" [routerLink]="['/admin/hospital']">Hospitals</a></li>
+    <li>Add Hospital</li>
+  </ol>
+</div>
+<div class="add_doctor_form">
+  <!-- <h3 class="sec_title">Add <span class="c_purple">Hospital</span></h3> -->
+  <form
+    [formGroup]="hospital_form"
+    autocomplete="off"
+    (submit)="add_hospital()"
+  >
+    <section class="section_sep">
+      <div class="general_info_div">
+        <h5>General Information</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Hospital name:</label>
+              <input
+                type="text"
+                minlength="3"
+                maxlength="60"
+                class="form-control"
+                placeholder="Enter hospital name"
+                formControlName="name"
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['name'].hasError('required') &&
+                  hospital_form.controls['name'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter name
+              </div>
+              <div
+                *ngIf="
+                  hospital_form.controls['name'].hasError('pattern') &&
+                  hospital_form.controls['name'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter valid name
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Full address:</label>
+              <input
+                placeholder="Enter full address"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="off"
+                type="text"
+                id="location_address"
+                class="form-control"
+                #search
+              />
+
+              <!-- <agm-map
+                [latitude]="lat"
+                [longitude]="lng"
+                [scrollwheel]="false"
+                [zoom]="zoom"
+              >
+                <agm-marker
+                  [latitude]="latitude"
+                  [longitude]="longitude"
+                ></agm-marker>
+              </agm-map> -->
+              <div
+                *ngIf="
+                  hospital_form.controls['address'].hasError('required') &&
+                  hospital_form.controls['address'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter full address
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>City:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter city"
+                formControlName="city"
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['city'].hasError('required') &&
+                  hospital_form.controls['city'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter city
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>State:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter state"
+                formControlName="state"
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['state'].hasError('required') &&
+                  hospital_form.controls['state'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter state
+              </div>
+            </div>
+          </div> -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>ZIP:</label>
+              <input
+                type="text"
+                maxlength="5"
+                class="form-control"
+                placeholder="Enter ZIP"
+                formControlName="pincode"
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['pincode'].hasError('required') &&
+                  hospital_form.controls['pincode'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter ZIP
+              </div>
+              <div
+                *ngIf="
+                  hospital_form.controls['pincode'].hasError('pattern') &&
+                  hospital_form.controls['pincode'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter valid ZIP
+              </div>
+              <div
+                *ngIf="
+                  !hospital_form.controls['pincode'].hasError('pattern') &&
+                  hospital_form.controls['pincode'].hasError('minlength') &&
+                  hospital_form.controls['pincode'].touched
+                "
+                class="text-danger error_div"
+              >
+                ZIP must of 5 digits long
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Landmark:</label>
+              <input
+                type="text"
+                maxlength="100"
+                class="form-control"
+                placeholder="Enter landmark"
+                formControlName="landmark"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <h5>Upload picture</h5>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="upload_img" for="upload_img">
+            <img
+              [src]="selected_image || 'assets/images/hospital_placeholder.jpg'"
+            />
+
+            <span class="up_txt">Change Picture </span>
+            <input
+              type="file"
+              class="form-control"
+              id="upload_img"
+              (change)="upload($event)"
+              accept="image/*"
+            />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="contacts_div">
+        <h5>Contacts</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>E-mail:</label>
+              <input
+                type="email"
+                id="email_input"
+                class="form-control"
+                formControlName="email"
+                placeholder="Enter email..."
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['email'].hasError('required') &&
+                  hospital_form.controls['email'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter email
+              </div>
+              <div
+                *ngIf="
+                  hospital_form.controls['email'].hasError('pattern') &&
+                  hospital_form.controls['email'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter valid email
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Phone:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone_number"
+                formControlName="phone"
+                placeholder="Enter phone number"
+                maxlength="14"
+                (change)="changePhone($event)"
+                appPhoneMask
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['phone'].hasError('required') &&
+                  hospital_form.controls['phone'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter phone number
+              </div>
+              <div
+                *ngIf="
+                  hospital_form.controls['phone'].hasError('minlength') &&
+                  hospital_form.controls['phone'].touched
+                "
+                class="text-danger error_div"
+              >
+                Enter valid number
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Emergency:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone_number"
+                formControlName="emergency_number"
+                placeholder="Enter emergency number"
+                maxlength="14"
+                appPhoneMask
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['emergency_number'].hasError(
+                    'required'
+                  ) && hospital_form.controls['emergency_number'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter emergency number
+              </div>
+              <div
+                *ngIf="
+                  hospital_form.controls['emergency_number'].hasError(
+                    'minlength'
+                  ) && hospital_form.controls['emergency_number'].touched
+                "
+                class="text-danger error_div"
+              >
+                Enter valid number
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Appointment:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone_number"
+                formControlName="appointment_number"
+                placeholder="Enter appointment number"
+                maxlength="14"
+                appPhoneMask
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['appointment_number'].hasError(
+                    'required'
+                  ) && hospital_form.controls['appointment_number'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter appointment number
+              </div>
+              <div
+                *ngIf="
+                  hospital_form.controls['appointment_number'].hasError(
+                    'minlength'
+                  ) && hospital_form.controls['appointment_number'].touched
+                "
+                class="text-danger error_div"
+              >
+                Enter valid number
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>Fax:</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="fax"
+                placeholder="Enter fax"
+                maxlength="14"
+                appPhoneMask
+              />
+              <div
+                *ngIf="
+                  hospital_form.controls['fax'].hasError('minlength') &&
+                  hospital_form.controls['fax'].touched
+                "
+                class="text-danger error_div"
+              >
+                Enter valid number
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="specialities_div">
+        <h5>Specialities</h5>
+        <div class="form-group">
+          <label>Select specialities:</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Select specialities'"
+            [data]="dropdownList"
+            formControlName="specialities"
+            [settings]="dropdownSettings"
+          >
+          </ng-multiselect-dropdown>
+
+          <div
+            *ngIf="
+              hospital_form.controls['specialities'].hasError('required') &&
+              hospital_form.controls['specialities'].touched
+            "
+            class="text-danger error_div"
+          >
+            Please select specialities
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="timing_div">
+        <h5>Timings</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group clock_input">
+              <label for="to_time">From:</label>
+              <input
+                id="to_time"
+                type="time"
+                class="form-control"
+                atp-time-picker
+                readonly
+                placeholder="from"
+                formControlName="timing_from"
+                (click)="open()"
+              />
+              <i class="fa fa-clock"></i>
+              <div
+                *ngIf="
+                  hospital_form.controls['timing_from'].hasError('required') &&
+                  hospital_form.controls['timing_from'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter start timing
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group clock_input">
+              <label for="to_time">To:</label>
+              <input
+                type="time"
+                id="to_time"
+                class="form-control"
+                atp-time-picker
+                value="00:00"
+                readonly
+                placeholder="to"
+                formControlName="timing_to"
+                (click)="open()"
+              />
+              <i class="fa fa-clock"></i>
+              <div
+                *ngIf="
+                  hospital_form.controls['timing_to'].hasError('required') &&
+                  hospital_form.controls['timing_to'].touched
+                "
+                class="text-danger error_div"
+              >
+                Please enter end timing
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section_sep">
+      <div class="overview_div">
+        <h5>About this hospital</h5>
+        <label
+          >Write description:
+          <i style="text-transform: lowercase">(max characters 3500)</i></label
+        >
+        <textarea
+          formControlName="overview"
+          maxlength="3500"
+          placeholder="About this hospital..."
+        ></textarea>
+      </div>
+
+      <div class="mt-3 d-flex justify-content-end">
+        <button type="button" class="btn back_btn cancel_btn" (click)="back()">
+          Cancel
+        </button>
+        <button type="submit" class="btn submit_btn">
+          <span *ngIf="!loading">Add</span>
+          <span *ngIf="loading">Processing...</span>
+        </button>
+      </div>
+    </section>
+  </form>
+</div>

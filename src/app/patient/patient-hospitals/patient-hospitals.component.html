@@ -1,0 +1,74 @@
+<div class="hospitals_card h_block_list" *ngIf="!loading; else loading_data">
+  <ng-container *ngIf="(hospitals | filter: search_text).length === 0">
+    <div class="no_matches text-center">
+      <h3>No<span>!</span></h3>
+      <p><span>HOSPITAL</span></p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngFor="let item of hospitals | filter: search_text">
+    <div class="h_block">
+      <div class="h_block_inner">
+        <div class="h_b_img">
+          <img
+            [routerLink]="['/patient/hospital', item.id]"
+            class="hos_card_img"
+            [src]="item.image || 'assets/images/hospital_placeholder.png'"
+            [alt]="item.name"
+          />
+        </div>
+        <div class="h_b_info">
+          <h3>
+            {{ item.name }}
+            <small
+              ><i class="fas fa-map-marker-alt"></i> {{ item.city }}
+            </small>
+          </h3>
+          <div class="h_b_dsc">
+            <span> <i class="fas fa-envelope"></i> {{ item.email }} </span>
+            <span>
+              <i class="fas fa-phone"></i> {{ item.emergency_number }}
+            </span>
+            <span> <i class="fas fa-map"></i> {{ item.address }} </span>
+          </div>
+          <p class="m-0 w-100">
+            <small>
+              <i class="fas fa-clock"></i>
+              {{ getTime(item.timing_from) | date: "shortTime" }} -
+              {{ getTime(item.timing_to) | date: "shortTime" }}
+            </small>
+          </p>
+        </div>
+      </div>
+      <div class="h_b_right">
+        <agm-map
+          [latitude]="makeFloat(item.lat)"
+          [longitude]="makeFloat(item.lng)"
+          [zoom]="10"
+          [zoomControl]="false"
+          [fullscreenControl]="true"
+          [streetViewControl]="false"
+          backgroundColor="#ddd"
+          mapTypeId="terrain"
+        >
+          <agm-marker
+            [latitude]="makeFloat(item.lat)"
+            [longitude]="makeFloat(item.lng)"
+          ></agm-marker>
+        </agm-map>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- <div class="pagination_div">
+    <pagination
+      [totalItems]="totalItems"
+      [(ngModel)]="currentPage"
+      [maxSize]="maxSize"
+    ></pagination>
+  </div> -->
+</div>
+
+<ng-template #loading_data>
+  Please wait...
+</ng-template>

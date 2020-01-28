@@ -1,0 +1,40 @@
+.profile_pic {
+  width: 60px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin: 0 0 40px;
+}
+
+select#select_hospital {
+  background: #ddd;
+  border: 0;
+  box-shadow: none;
+}
+
+label {
+  font-family: montserrat;
+  color: #ad8b8b;
+  font-size: 11px;
+  font-weight: 500;
+}
+ul {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 500;
+  margin: 2px;
+}
+
+.row.badge_week {
+  padding: 0 10px;
+}
+
+.badge-success {
+  color: #6b0606;
+  background-color: #dddddd;
+}

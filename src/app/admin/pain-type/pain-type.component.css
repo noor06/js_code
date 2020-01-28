@@ -1,0 +1,18 @@
+#hospitals tbody tr {
+    cursor: pointer;
+  }
+  
+  .loader-div {
+    width: 100% !important;
+    text-align: center;
+  }
+  
+  .loader-div img {
+    width: 20%;
+    margin: 100px 0;
+    filter: brightness(3);
+  }
+  
+  i.fas.fa-trash {
+    cursor: pointer;
+}  

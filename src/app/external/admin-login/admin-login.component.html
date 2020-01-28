@@ -1,0 +1,87 @@
+<div class="login_page_wrap">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="login_left">
+          <h4>Quality Care Starts Here</h4>
+          <h2>MY TREATMENT TIME</h2>
+          <p>
+            We work with compassionate and efficient Doctors.<br>Your time and health matters
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="login_right">
+          <h2>Admin Login</h2>
+          <h5>Welcome to My Treatment Time</h5>
+          <div class="admin_login_form_div">
+            <form
+              [formGroup]="admin_login_form"
+              autocomplete="off"
+              (submit)="admin_login()"
+            >
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Enter email"
+                  formControlName="email"
+                />
+                <i class="icon_email"></i>
+                <div
+                  *ngIf="
+                    admin_login_form.controls['email'].hasError('required') &&
+                    admin_login_form.controls['email'].touched
+                  "
+                  class="error_div text-danger"
+                >
+                  Please enter email
+                </div>
+                <div
+                  *ngIf="
+                    admin_login_form.controls['email'].hasError('pattern') &&
+                    admin_login_form.controls['email'].touched
+                  "
+                  class="error_div text-danger"
+                >
+                  Please enter valid email
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="pwd"
+                  placeholder="Enter password"
+                  formControlName="password"
+                />
+                <i class="icon_password"></i>
+                <div
+                  *ngIf="
+                    admin_login_form.controls['password'].hasError(
+                      'required'
+                    ) && admin_login_form.controls['password'].touched
+                  "
+                  class="error_div text-danger"
+                >
+                  Please enter password
+                </div>
+              </div>
+              <div class="admin_login_btn_div">
+                <button
+                  type="submit"
+                  [disabled]="loading"
+                  class="btn btn-sm admin_login_btn"
+                >
+                  <span *ngIf="!loading">Login</span>
+                  <span *ngIf="loading">Logging in ...</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

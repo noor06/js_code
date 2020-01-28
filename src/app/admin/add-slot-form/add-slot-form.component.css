@@ -1,0 +1,74 @@
+.form-group label {
+  display: block;
+}
+
+/*.time_div_group {
+  display: flex;
+}*/
+
+/*.time_div_group .form-group {
+  margin: 15px;
+}
+*/
+
+label {
+  color: #a99292;
+}
+
+input.form-control {
+  background: #fff !important;
+}
+
+button.btn.btn-success:hover,
+button.btn.btn-success:active,
+button.btn.btn-success:focus {
+  box-shadow: none !important;
+  background: #fff !important;
+  color: #999;
+}
+
+.add_slot_form {
+  padding: 20px;
+}
+.calendar_div,
+.clock_input {
+  position: relative;
+}
+.calendar_div .fa-calendar,
+.clock_input .fa-clock {
+  position: absolute;
+  right: 15px;
+  top: 32px;
+  color: #888;
+}
+
+.profile_pic_slot.col-md-3 img {
+  height: 90px;
+}
+
+hr {
+  margin: 40px 0;
+}
+
+.doctor_profile_brief.col-md-9 {
+  text-align: left;
+}
+
+.profile_pic_slot.col-md-9 {
+  text-align: center;
+}
+
+.doctor_profile_brief h3 {
+  color: #bb9b9b;
+}
+
+.doctor_profile_brief.col-md-9 label {
+  color: black;
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+    hr{
+        margin: 40px 0;
+    }
+}

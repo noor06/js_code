@@ -1,0 +1,230 @@
+<ng-container *ngIf="!loading">
+  <div class="row selection_divs">
+    <div class="col-md-6">
+      <div class="select_doctor_div">
+        <label>Select Doctor:</label>
+        <select
+          [(ngModel)]="doctor_id"
+          (change)="select_doctor($event)"
+          class="select_doctor form-control"
+        >
+          <ng-container *ngIf="doctors && doctors.length > 0; else no_doctor">
+            <option value="" selected>Select Doctor...</option>
+            <ng-container *ngFor="let item of doctors">
+              <option [value]="item.id">{{ item.name }}</option>
+            </ng-container>
+          </ng-container>
+        </select>
+        <ng-template #no_doctor>
+          <option value="" selected
+            >This hospital currently has no doctor...</option
+          >
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div *ngIf="doctor_flag" class="select_date_div">
+        <label>Choose Date:</label>
+        <input
+          type="text"
+          id="slot_date"
+          class="form-control"
+          #dp="bsDatepicker"
+          bsDatepicker
+          readonly
+          [bsConfig]="{ dateInputFormat: 'DD MMMM YYYY' }"
+          placeholder="Enter slot date..."
+          bsDatepicker
+          [(ngModel)]="date"
+          (onHidden)="date_selected()"
+        />
+        <i class="fa fa-calendar"></i>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="doctor_flag" class="slot_div">
+    <table id="slots" class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="no-sort">
+            <input
+              type="checkbox"
+              [(ngModel)]="all_check_flag"
+              [disabled]="slots.length === 0"
+              (change)="checkAll()"
+            />
+          </th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th class="no-sort">Status</th>
+          <th class="no-sort">
+            <div *ngIf="slots.length > 0" class="batch btn-group" dropdown>
+              <button
+                id="button-basic2"
+                dropdownToggle
+                type="button"
+                class="btn btn-sm batch_opr_btn dropdown-toggle"
+                aria-controls="dropdown-basic-slots"
+              >
+                Batch Operations <span class="caret"></span>
+              </button>
+              <ul
+                id="dropdown-basic-slots"
+                *dropdownMenu
+                class="dropdown-menu"
+                role="menu"
+                aria-labelledby="button-basic2"
+              >
+                <li
+                  *ngIf="checked_count > 0"
+                  role="menuitem"
+                  (click)="delete('checked')"
+                >
+                  <a class="dropdown-item">delete checked</a>
+                </li>
+                <li role="menuitem" (click)="delete('all')">
+                  <a class="dropdown-item">delete all</a>
+                </li>
+                <li
+                  *ngIf="closed_slots_flag"
+                  role="menuitem"
+                  (click)="delete('closed')"
+                >
+                  <a class="dropdown-item">delete closed</a>
+                </li>
+              </ul>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="slots && slots.length > 0">
+          <tr *ngFor="let item of slots; let i = index">
+            <td>
+              <input
+                type="checkbox"
+                (change)="check(item.id, item.isChecked)"
+                [checked]="item.isChecked"
+                [disabled]="item.status === '3'"
+                [class]="item.status === '3' && 'disable_checkbox'"
+              />
+            </td>
+            <!-- <td>{{ item.date | date: "longDate" }}</td> -->
+            <!-- <td>{{ getDay(item.date) }}</td> -->
+            <td>{{ getTime(item.from) | date: "shortTime" }}</td>
+            <td>{{ getTime(item.to) | date: "shortTime" }}</td>
+            <td>
+              <span class="badge badge-secondary" *ngIf="item.status === '0'">
+                Closed
+              </span>
+
+              <span *ngIf="item.status === '1'" class="badge badge-success">
+                Available
+              </span>
+
+              <span *ngIf="item.status === '2'" class="badge badge-danger">
+                Unavailable
+              </span>
+
+              <span *ngIf="item.status === '3'" class="badge badge-info">
+                Occupied
+              </span>
+            </td>
+            <td>
+              <button
+                type="button"
+                [class]="
+                  item.status === '3'
+                    ? 'btn btn-sm delete_btn disabled_btn'
+                    : 'btn btn-sm delete_btn'
+                "
+                (click)="delete_Slot(item.id)"
+                [disabled]="item.status === '3'"
+              >
+                <span *ngIf="!loading"><i class="fa fa-trash"></i> Delete</span>
+                <span *ngIf="loading"> Deleting... </span>
+              </button>
+
+              <div
+                *ngIf="item.status !== '0' && item.status !== '3'"
+                class="btn-group"
+                dropdown
+                container="body"
+              >
+                <button
+                  id="button-container"
+                  dropdownToggle
+                  type="button"
+                  class="btn btn-sm batch_opr_btn dropdown-toggle"
+                  aria-controls="dropdown-container"
+                >
+                  <i class="fas fa-cog"></i> Action
+                  <span class="caret"></span>
+                </button>
+                <ul
+                  id="dropdown-container"
+                  *dropdownMenu
+                  class="dropdown-menu"
+                  role="menu"
+                  aria-labelledby="button-container"
+                >
+                  <li role="menuitem">
+                    <a
+                      class="dropdown-item"
+                      (click)="updateSlot(item.id, 'close')"
+                      >Close</a
+                    >
+                  </li>
+                  <li *ngIf="item.status === '1'" role="menuitem">
+                    <a
+                      class="dropdown-item"
+                      (click)="updateSlot(item.id, 'suspend')"
+                      >Suspend</a
+                    >
+                  </li>
+                  <li *ngIf="item.status === '2'" role="menuitem">
+                    <a
+                      class="dropdown-item"
+                      (click)="updateSlot(item.id, 'resume')"
+                      >Resume</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <ng-template #no_slots>
+      <tr>
+        Currently has no slot...
+      </tr>
+    </ng-template>
+
+    <div class="add_slot_btn_div">
+      <button
+        type="button"
+        class="btn add_slot_btn add_btn"
+        (click)="open_add_slot_form(add_slot_form)"
+      >
+        Create slots
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #add_slot_form>
+  <app-add-slot-form
+    [modalRef]="modalRef"
+    [selected_doctor]="selected_doctor"
+    (callBack)="slot_added()"
+  ></app-add-slot-form>
+</ng-template>
+
+<div *ngIf="loading" class="loader">
+  <img src="assets/images/three-bar-loader.gif" />
+</div>

@@ -1,0 +1,20 @@
+.navbar_div {
+  width: 100% !important;
+}
+
+.nav_logo {
+  display: block;
+}
+
+.nav_logo img {
+  height: 80px !important;
+}
+
+span.nav-heading {
+  font-size: 30px;
+  font-weight: 500;
+  margin-left: 25px;
+  text-transform: uppercase;
+  color: #9fbfa1;
+  font-family: montserrat;
+}
